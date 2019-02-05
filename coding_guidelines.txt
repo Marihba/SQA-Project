@@ -1,0 +1,8 @@
+Coding structures to be followed by both programmers:
+
+Functions/Methods: 
+    -> a description of what the method is above
+    -> naming convention is standard: 
+        - classes start with caps
+        - constants are all caps
+        - variables can begin with lowercase, but every other word must be begin with uppercase
