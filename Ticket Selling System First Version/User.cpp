@@ -44,7 +44,7 @@ void User::createUser() {
     // need to update this to include user info to dtf
   }
   else {
-    cout << "Sorry not an admin, you don't have the ""
+    cerr << "Sorry not an admin, you don't have the ""
     << "privilege to create a new user" << endl;
   }
 }
@@ -56,21 +56,20 @@ void User::deleteUser() {
    cin >>  name;
 
    // how to check where the outstanding ticket sales and purchase are for this user
-   if ()      // a check to see if this user has zero outsanding tickets
+   if (checkUserExists == true)      // a check to see if this user has zero outsanding tickets
    {
-        // add line of code to update change to the dtf
-   }
+     // invoke method that removes specified user's information
+     // for a specified file, in this case the available tickets file
 
+     // call method to pass information into the dtf
+   }
    // if user does have outstanding tickets
    else {
-     // cancel them
-
      // then apply lines of code to make change to the dtf
-
    }
  }
  else {
-   cout << "Sorry not an admin, you don't have the ""
+   cerr << "Sorry not an admin, you don't have the ""
    << "privilege to delete a current user" << endl;
  }
 }
@@ -90,4 +89,10 @@ void User::sellTickets() {
     << "privilege to delete a current user" << endl;
   }
   //return dt.stringRepresentation;
+}
+
+// a function that checks in whether a user exists within a certain file (A.T or A.U)
+bool checkUserExists(string uname, File file) {
+    // need to implement this function
+    return false;
 }
