@@ -1,17 +1,16 @@
 // header file for users
-#include <string>
-
 using namespace std;
 
 class User {
   private:
     // member variables
-
     string username;
     string userAccountType;
     float availableCredit;
 
   public:
+    // default constructor
+    User();
     // constructor
     User(string username, string userAccountType, float availableCredit);
 
@@ -26,5 +25,4 @@ class User {
     void refund();
     void addCreditStandardMode();
     void addCreditAdminMode();
-
 };
