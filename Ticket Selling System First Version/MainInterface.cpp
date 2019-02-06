@@ -3,19 +3,23 @@
 #include <bits/stdc++.h>
 #include <fstream>
 #include <vector>
+#include "User.h"
+#include "LoginInterface.h"
 
 using namespace std;
 
-
 class MainInterface {
-
   private:
+    // class variables
+    LoginInterface loginScreen;
+    User currentUser;
     vector<string> dailyTransactionsLog;
 
   public:
+    // class methods
     void displayLoginInterface();
     void displayUserProfile(); //displays user and this will also initialize a User class and store user information
-    void appendToTransactionLogList();
+    void appendToTransactionLogList(string currentTransaction);
     void endSession();
     void writeToDailyTransaction(vector<string> data);
 };
@@ -26,15 +30,20 @@ void MainInterface::displayLoginInterface() {
 
 void MainInterface::displayUserProfile() {
   //displays user profile
-  cout << "Welcome to TSS!!" << "\n" << "\ta portal just for " <<
-  "getting the most fire deals on hit popular event tickets" << endl;
+  cout << "Welcome to TSS!!\n" << "\ta portal just for " <<
+  "getting the most FIRE deals on hit popular event tickets" << endl;
 }
 
-void MainInterface::appendToTransactionLogList() {
-
+void MainInterface::appendToTransactionLogList(string currentTransaction) {
+  dailyTransactionsLog.push_back(currentTransaction);
 }
 
 void MainInterface::endSession() {
+  //write to daily transaction log file
+  //one transaction per line in file
+  writeToDailyTransaction(dailyTransactionsLog);
+  cout << "Session Terminated!" << endl;
+  displayLoginInterface();
 
 }
 
@@ -55,4 +64,3 @@ int main() {
 
   return 0;
  }
-
