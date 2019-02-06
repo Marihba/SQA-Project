@@ -16,7 +16,8 @@ User::User(string username, string userAccountType, float availableCredit) {
   this.userAccountType = userAccountType;
   this.availableCredit = availableCredit;
 }
-
+// reminder** to revise why this function is necessary when we already have create user function
+// is this for login??
 string User::stringRepresentation(string username, string userType, float userCredit) {
     string transactionCode;
     string credit = to_string(userCredit);
@@ -34,13 +35,15 @@ void User::updateAvailableCredit(float amount) {
 
 void User::createUser() {
   if (this.userAccountType == "AA") {
-    string name, accountType;
+    float defaultCredit = 50000.00;
+    string name, accountType, transactionCode, strCredit;
     cout << "Enter name of new user: " << endl;
     cin >>  name;
 
     cout << "What is this user's account type: " << endl;
     cin >>  accountType;
-
+    strCredit = to_string(defaultCredit);
+    transactionCode = "01 " + name + " " + accountType + " " + strCredit;
     // need to update this to include user info to dtf
   }
   else {
@@ -56,17 +59,16 @@ void User::deleteUser() {
    cin >>  name;
 
    // how to check where the outstanding ticket sales and purchase are for this user
-   if (checkUserExists(name) == true)      // a check to see if this user has zero outsanding tickets
+   if (checkUserExists(name) == true)      // a check to see if this user has outstanding tickets
    {
      // invoke method that removes specified user's information
-     // for a specified file, in this case the available tickets file
+     // for a specified file, in this case ticket files for rthe outstanding tickets
 
-     transactionCode = " ";
-     // call method to pass information into the dtf
+     transactionCode = "02 " + name + " " + findUserType(name) + " " +findUserCredit(name);
+     // call method to pass above transaction code into the dtf
    }
-   // if user does have outstanding tickets
    else {
-     transactionCode = " ";
+     transactionCode = "02 " + name + " " + findUserType(name) + " " +findUserCredit(name);
      // then apply lines of code to make change to the dtf
    }
  }
@@ -80,7 +82,7 @@ void User::sellTickets() {
   //ignore this, this is just a side note for Jude for later:
   //dt.transactioncode = 02; dt.username = username...etc;
   if (this.userAccountType != "BS") {
-    string eventName, transactionCode;
+    string eventName, transactionCode, strNumTickets, strTicketPrice;
     uint numTickets;
     float ticketPrice;
 
@@ -95,8 +97,10 @@ void User::sellTickets() {
 
     // applied changes in credit for the seller should increase, question is
     // where does this increase go to, user accounts file? need to check **
-
-    transactionCode = " ";
+    strNumTickets = to_string(numTickets);
+    strTicketPrice = to_string(ticketPrice);
+    transactionCode = "04 " + eventName + " " +this.username + " "
+    + strNumTickets + " " + strTicketPrice;
     // then apply lines of code to make change to the dtf
   }
   else {
@@ -139,10 +143,32 @@ void User::buyTickets() {
   }
 }
 
+void User::addCreditAdminMode() {
 
+}
 
+void User::addCreditStandardMode() {
+
+}
+
+void User::refund() {
+
+}
 // a function that checks in whether a user exists within a certain file (A.T or A.U)
-bool checkUserExists(string uname) {
+bool checkUserExists(string uName) {
     // need to implement this function
     return false;
+}
+
+// a method that takes a username and finds the user type, since we know that the
+// user type is two digits and the posistion is fixed
+string findUserType(string uName) {
+  // needs implementing, temporarily returns SS
+  return "SS";
+}
+
+// a method that takes a username and finds the user's available credit
+string findUserCredit(string uName) {
+  // needs implementing, temporarily returns SS
+  return "10000.00";
 }
