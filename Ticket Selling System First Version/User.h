@@ -19,7 +19,7 @@ class User {
     float getAvailableCredit();
     void updateAvailableCredit(float credit);
     void createUser();
-    void deleteUser(string username);
+    void deleteUser();
     void sellTickets();
     void buyTickets();
     void refund();

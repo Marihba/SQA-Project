@@ -11,29 +11,29 @@ using namespace std;
 //doing an example for this in sell tickets
 
 User::User(string username, string userAccountType, float availableCredit) {
-  this.username = username;
-  this.userAccountType = userAccountType;
-  this.availableCredit = availableCredit;
+  this->username = username;
+  this->userAccountType = userAccountType;
+  this->availableCredit = availableCredit;
 }
 // reminder** to revise why this function is necessary when we already have create user function
 // is this for login??
 string User::stringRepresentation(string username, string userType, float userCredit) {
     string transactionCode;
     string credit = to_string(userCredit);
-    code = username + " " + userType + " " + credit;
-    return code;
+    transactionCode = username + " " + userType + " " + credit;
+    return transactionCode;
 }
 
 float User::getAvailableCredit() {
-  return this.availableCredit;
+  return this->availableCredit;
 }
 
 void User::updateAvailableCredit(float amount) {
-  this.availableCredit = amount;
+  this->availableCredit = amount;
 }
 
 void User::createUser() {
-  if (this.userAccountType == "AA") {
+  if (this->userAccountType == "AA") {
     float defaultCredit = 50000.00;
     string name, accountType, transactionCode, strCredit;
     cout << "Enter name of new user: " << endl;
@@ -48,8 +48,8 @@ void User::createUser() {
     // daily transaction data (dtd) constructor
   }
   else {
-    cerr << "Sorry not an admin, you don't have the ""
-    << "privilege to create a new user" << endl;
+    cerr << "Sorry not an admin, you don't have the " <<
+    "privilege to create a new user" << endl;
   }
 }
 
@@ -79,20 +79,20 @@ void User::deleteUser() {
    }
  }
  else {
-   cerr << "Sorry not an admin, you don't have the ""
-   << "privilege to delete a current user" << endl;
+   cerr << "Sorry not an admin, you don't have the " <<
+   "privilege to delete a current user" << endl;
  }
 }
 
 void User::sellTickets() {
   //ignore this, this is just a side note for Jude for later:
   //dt.transactioncode = 02; dt.username = username...etc;
-  if (this.userAccountType != "BS") {
+  if (this->userAccountType != "BS") {
     string eventName, transactionCode, uName;
-    uint numTickets;
+    unsigned int numTickets;
     float ticketPrice;
     transactionCode = "04";
-    uName = this.username;
+    uName = this->username;
 
     cout << "Welcome to the Seller's Terminal!" << endl;
     cout << "What is the name of the Event: " << endl;
@@ -118,9 +118,9 @@ void User::sellTickets() {
 }
 
 void User::buyTickets() {
-  if (this.userAccountType != "SS") {
+  if (this->userAccountType != "SS") {
     string eventName, transactionCode, sellerName;
-    uint numTickets;
+    unsigned int numTickets;
     // need to invoke method to retreive price of seller's ticket
     // defaulted to 5 dollars for simplicity
     float ticketPrice = 5.00;
@@ -150,9 +150,9 @@ void User::buyTickets() {
 }
 
 void User::addCreditAdminMode() {
-  if (this.userAccountType == "AA") {
+  if (this->userAccountType == "AA") {
     float credit;
-    string uName;
+    string uName, transactionCode;
     cout << "Welcome to the Admin Credit Transfer Terminal!" << endl;
     cout << "Amount of credit to add: " << endl;
     cin >> credit;
@@ -178,15 +178,15 @@ void User::addCreditAdminMode() {
 }
 
 void User::addCreditStandardMode() {
-  if (this.userAccountType =! "AA") {
+  if (this->userAccountType =! "AA") {
     float credit;
-    transactionCode = "06";
+    string transactionCode = "06";
 
     cout << "Welcome to the Credit Assistance Terminal!" << endl;
     cout << "Enter the amount of credit you request: " << endl;
     cin >> credit;
 
-    cout << "User: " << this.username << " is requesting an increase of funds "
+    cout << "User: " << this->username << " is requesting an increase of funds "
     << " in the amount of " << credit << endl;
 
     // pass in variables [transactionCode, this.username, this.userAccountType, credit]
@@ -199,9 +199,9 @@ void User::addCreditStandardMode() {
 }
 
 void User::refund() {
-  if (this.userAccountType =! "AA") {
+  if (this->userAccountType =! "AA") {
     float credit;
-    string buyerUName, sellerUName;
+    string buyerUName, sellerUName, transactionCode;
     transactionCode = "05";
 
     cout << "Welcome to the Refund Terminal!" << endl;
@@ -209,7 +209,7 @@ void User::refund() {
     cin >> buyerUName;
 
     cout << "Enter the seller's username: " << endl;
-    cin >> sellerName;
+    cin >> sellerUName;
 
     cout << "Amount refunded to " << sellerUName << ": " << endl;
     cin >> credit;
