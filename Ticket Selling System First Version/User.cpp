@@ -1,5 +1,4 @@
 // contains information for the users (admin, fs, bs, ss)
-
 #include <iostream>
 #include "User.h"
 #include <string>
@@ -40,11 +39,13 @@ void User::createUser() {
     cout << "Enter name of new user: " << endl;
     cin >>  name;
 
-    cout << "What is this user's account type: " << endl;
+    cout << "What account type should this user have: " << endl;
     cin >>  accountType;
-    strCredit = to_string(defaultCredit);
-    transactionCode = "01 " + name + " " + accountType + " " + strCredit;
-    // need to update this to include user info to dtf
+
+    transactionCode = "01";
+
+    // pass in variables [transactionCode, name and defaultCredit] into
+    // daily transaction data (dtd) constructor
   }
   else {
     cerr << "Sorry not an admin, you don't have the ""
@@ -58,18 +59,23 @@ void User::deleteUser() {
    cout << "Enter the username you wish to remove: " << endl;
    cin >>  name;
 
-   // how to check where the outstanding ticket sales and purchase are for this user
-   if (checkUserExists(name) == true)      // a check to see if this user has outstanding tickets
+   transactionCode = "02";
+   // a check to see if this user has outstanding tickets
+   if (checkUserExists(name) == true)
    {
-     // invoke method that removes specified user's information
-     // for a specified file, in this case ticket files for rthe outstanding tickets
+     // invoke method that removes specified user's information, in this case
+     // tickets file for the outstanding tickets
 
-     transactionCode = "02 " + name + " " + findUserType(name) + " " +findUserCredit(name);
-     // call method to pass above transaction code into the dtf
+     // assuming the outstanding tickets are now cancelled
+
+     // pass in variables [transactionCode, name , findUserType(name), defaultCredit] into
+     // daily transaction data (dtd) constructor
    }
    else {
-     transactionCode = "02 " + name + " " + findUserType(name) + " " +findUserCredit(name);
-     // then apply lines of code to make change to the dtf
+     // no need to check, directly invoke method as mentioned below
+
+     // pass in variables [transactionCode, name , findUserType(name), defaultCredit] into
+     // daily transaction data (dtd) constructor
    }
  }
  else {
@@ -82,10 +88,13 @@ void User::sellTickets() {
   //ignore this, this is just a side note for Jude for later:
   //dt.transactioncode = 02; dt.username = username...etc;
   if (this.userAccountType != "BS") {
-    string eventName, transactionCode, strNumTickets, strTicketPrice;
+    string eventName, transactionCode, uName;
     uint numTickets;
     float ticketPrice;
+    transactionCode = "04";
+    uName = this.username;
 
+    cout << "Welcome to the Seller's Terminal!" << endl;
     cout << "What is the name of the Event: " << endl;
     cin >> eventName;
 
@@ -97,11 +106,9 @@ void User::sellTickets() {
 
     // applied changes in credit for the seller should increase, question is
     // where does this increase go to, user accounts file? need to check **
-    strNumTickets = to_string(numTickets);
-    strTicketPrice = to_string(ticketPrice);
-    transactionCode = "04 " + eventName + " " +this.username + " "
-    + strNumTickets + " " + strTicketPrice;
-    // then apply lines of code to make change to the dtf
+
+    // pass in variables [transactionCode, eventName, uName, numTickets, ticketPrice]
+    // into daily transaction data (dtd) constructor
   }
   else {
     cerr << "Sorry Buy standard (BS) users don't have the "
@@ -112,13 +119,14 @@ void User::sellTickets() {
 
 void User::buyTickets() {
   if (this.userAccountType != "SS") {
-    string eventName, transactionCode, sellerName, strNumTickets, strTicketPrice;
+    string eventName, transactionCode, sellerName;
     uint numTickets;
-    // need to invode method to retreive price of seller's ticket
+    // need to invoke method to retreive price of seller's ticket
     // defaulted to 5 dollars for simplicity
     float ticketPrice = 5.00;
+    transactionCode = "03";
 
-    cout << "Welcome to the Buyer's Terminal!"
+    cout << "Welcome to the Buyer's Terminal!" << endl;
     cout << "What is the name of the Event: " << endl;
     cin >> eventName;
 
@@ -131,11 +139,9 @@ void User::buyTickets() {
     // need to display to terminal price per tickete, and total price of tickets
 
     // invoke method here to apply changes to user inventory
-    strNumTickets = to_string(userCredit);
-    strTicketPrice = to_string(ticketPrice);
-    transactionCode = "04 " + eventName + " " + sellerName + " " + strNumTickets
-    + " " + strTicketPrice;
-    // then apply lines of code to make change to the dtf
+
+    // pass in variables [transactionCode, eventName, sellerName, numTickets, ticketPrice]
+    // into daily transaction data (dtd) constructor
   }
   else {
     cerr << "Sorry Sell standard (SS) users don't have the "
@@ -144,16 +150,85 @@ void User::buyTickets() {
 }
 
 void User::addCreditAdminMode() {
+  if (this.userAccountType == "AA") {
+    float credit;
+    string uName;
+    cout << "Welcome to the Admin Credit Transfer Terminal!" << endl;
+    cout << "Amount of credit to add: " << endl;
+    cin >> credit;
 
+    cout << "Whom shall receive this amount: "  << endl;
+    cin >> uName;
+
+    cout << "User: " << uName << " will receive an increase in  funds of " <<
+    credit << endl;
+
+    transactionCode = "06";
+
+    // pass in variables [transactionCode, uName, this.userAccountType, credit]
+    // into daily transaction data (dtd) constructor
+
+    // NOTE** for the above acount type, need to check whether its for the Admin
+    // doing the addcredit action, or for the user receiving the credit
+    }
+    else {
+      cerr << "Sorry only Admins can assign additional funds to other users."
+      << endl;
+    }
 }
 
 void User::addCreditStandardMode() {
+  if (this.userAccountType =! "AA") {
+    float credit;
+    transactionCode = "06";
 
+    cout << "Welcome to the Credit Assistance Terminal!" << endl;
+    cout << "Enter the amount of credit you request: " << endl;
+    cin >> credit;
+
+    cout << "User: " << this.username << " is requesting an increase of funds "
+    << " in the amount of " << credit << endl;
+
+    // pass in variables [transactionCode, this.username, this.userAccountType, credit]
+    // into daily transaction data (dtd) constructor
+    }
+    else {
+      cerr << "Sorry only Admins can assign additional funds to other users."
+      << endl;
+    }
 }
 
 void User::refund() {
+  if (this.userAccountType =! "AA") {
+    float credit;
+    string buyerUName, sellerUName;
+    transactionCode = "05";
 
+    cout << "Welcome to the Refund Terminal!" << endl;
+    cout << "Enter the buyer's username: " << endl;
+    cin >> buyerUName;
+
+    cout << "Enter the seller's username: " << endl;
+    cin >> sellerName;
+
+    cout << "Amount refunded to " << sellerUName << ": " << endl;
+    cin >> credit;
+
+    cout << "Amount to be credited to " << sellerUName << " is $" << credit
+    << endl;
+    cout << "Amount to be deducted from " << buyerUName << " is $" << credit
+    << endl;
+
+    // invoke method to update buyer's/seller's available credit
+
+    // pass in variables [transactionCode, buyerUName, sellerUName, credit]
+    // into daily transaction data (dtd) constructor
+    }
+    else {
+      cerr << "Sorry only Admins can make refunds to user accounts." << endl;
+    }
 }
+
 // a function that checks in whether a user exists within a certain file (A.T or A.U)
 bool checkUserExists(string uName) {
     // need to implement this function
