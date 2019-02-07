@@ -1,4 +1,5 @@
-Jude            AA 100.00
-Ajanth          AA 050.00
-Judit           AA 100.00
-BanupriyaRob    AA 100.00
+Jude            AA 100000.00
+Ajanth          AA 050000.00
+Judit           AA 034000.00
+BanupriyaRob    AA 010300.00
+Abhiram         FS 055000.00
