@@ -15,7 +15,7 @@ class User {
     User(string username, string userAccountType, float availableCredit);
 
     // other built in methods
-    string stringRepresentation(string username, string userType, float userCredit);
+    void stringRepresentation(string username, string userType, float userCredit);
     float getAvailableCredit();
     void updateAvailableCredit(float credit);
     void createUser();

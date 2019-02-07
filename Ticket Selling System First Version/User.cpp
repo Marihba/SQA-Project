@@ -10,18 +10,43 @@ using namespace std;
 
 //doing an example for this in sell tickets
 
+// constructors
 User::User(string username, string userAccountType, float availableCredit) {
   this->username = username;
   this->userAccountType = userAccountType;
   this->availableCredit = availableCredit;
 }
-// reminder** to revise why this function is necessary when we already have create user function
-// is this for login??
-string User::stringRepresentation(string username, string userType, float userCredit) {
-    string transactionCode;
-    string credit = to_string(userCredit);
-    transactionCode = username + " " + userType + " " + credit;
-    return transactionCode;
+
+// helper methods for User class methods
+// a function that checks in whether a user exists within a certain file (A.T or A.U)
+bool checkUserExists(string uName) {
+    // need to implement this function
+    return false;
+}
+
+// takes a username and finds the user type, since we know that the
+// user type is two digits and the posistion is fixed
+string findUserType(string uName) {
+  // needs implementing, temporarily returns SS
+  return "SS";
+}
+
+// a method that takes a username and finds the user's available credit
+string findUserCredit(string uName) {
+  // needs implementing, temporarily returns SS
+  return "10000.00";
+}
+
+// User class methods
+
+// reminder** to revise why this function is necessary when its passing data
+// to the user accounts file
+void User::stringRepresentation(string username, string userType, float userCredit) {
+  string uName = username;
+  string uType = userType;
+  float uCredit = userCredit;
+  // pass in variables [uName , uType, uCredit] into
+  // user accounts file (dtd) constructor
 }
 
 float User::getAvailableCredit() {
@@ -54,12 +79,12 @@ void User::createUser() {
 }
 
 void User::deleteUser() {
- if (this.userAccountType == "AA") {
+ if (this->userAccountType == "AA") {
    string name, transactionCode;
    cout << "Enter the username you wish to remove: " << endl;
    cin >>  name;
-
    transactionCode = "02";
+
    // a check to see if this user has outstanding tickets
    if (checkUserExists(name) == true)
    {
@@ -178,7 +203,7 @@ void User::addCreditAdminMode() {
 }
 
 void User::addCreditStandardMode() {
-  if (this->userAccountType =! "AA") {
+  if (this->userAccountType != "AA") {
     float credit;
     string transactionCode = "06";
 
@@ -199,7 +224,7 @@ void User::addCreditStandardMode() {
 }
 
 void User::refund() {
-  if (this->userAccountType =! "AA") {
+  if (this->userAccountType == "AA") {
     float credit;
     string buyerUName, sellerUName, transactionCode;
     transactionCode = "05";
@@ -227,23 +252,4 @@ void User::refund() {
     else {
       cerr << "Sorry only Admins can make refunds to user accounts." << endl;
     }
-}
-
-// a function that checks in whether a user exists within a certain file (A.T or A.U)
-bool checkUserExists(string uName) {
-    // need to implement this function
-    return false;
-}
-
-// a method that takes a username and finds the user type, since we know that the
-// user type is two digits and the posistion is fixed
-string findUserType(string uName) {
-  // needs implementing, temporarily returns SS
-  return "SS";
-}
-
-// a method that takes a username and finds the user's available credit
-string findUserCredit(string uName) {
-  // needs implementing, temporarily returns SS
-  return "10000.00";
 }
