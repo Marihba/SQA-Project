@@ -1,0 +1,5 @@
+#Makefile Outputs
+*.o
+
+#Executable
+*.exe

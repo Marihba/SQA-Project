@@ -3,17 +3,20 @@
 #include <bits/stdc++.h>
 #include <fstream>
 #include <vector>
-#include "User.h"
+//#include "User.h"
 #include "LoginInterface.h"
 
 using namespace std;
 
 class MainInterface {
+
   private:
     // class variables
-    LoginInterface loginScreen;
-    User currentUser;
+
+    //User currentUser;
+    LoginInterface loginInterface;
     vector<string> dailyTransactionsLog;
+
 
   public:
     // class methods
@@ -22,16 +25,18 @@ class MainInterface {
     void appendToTransactionLogList(string currentTransaction);
     void endSession();
     void writeToDailyTransaction(vector<string> data);
+
 };
 
 void MainInterface::displayLoginInterface() {
   //Initializes Login Interface class and works with it
+  loginInterface.displayLogin();
+  cout << loginInterface.retrieveUserData() << endl;
 }
 
 void MainInterface::displayUserProfile() {
   //displays user profile
-  cout << "Welcome to TSS!!\n" << "\ta portal just for " <<
-  "getting the most FIRE deals on hit popular event tickets" << endl;
+
 }
 
 void MainInterface::appendToTransactionLogList(string currentTransaction) {
@@ -60,7 +65,9 @@ void MainInterface::writeToDailyTransaction(vector<string> data) {
 
 int main() {
 
-  cout << "Succesfully Executed!" << endl;
+  MainInterface mainInterface;
+
+  mainInterface.displayLoginInterface();
 
   return 0;
  }

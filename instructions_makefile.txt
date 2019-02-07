@@ -1,0 +1,7 @@
+if you are using windows,
+> MinGW32-make
+
+Otherwise,
+> make
+
+Produces an executable output file called, output.exe
