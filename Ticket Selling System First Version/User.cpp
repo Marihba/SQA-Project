@@ -93,8 +93,8 @@ void User::deleteUser() {
 
      // assuming the outstanding tickets are now cancelled
 
-     // pass in variables [transactionCode, name , findUserType(name), defaultCredit] into
-     // daily transaction data (dtd) constructor
+     // pass in variables [transactionCode, name , findUserType(name),
+     // findUserCredit] into daily transaction data (dtd) constructor
    }
    else {
      // means no outstanding tickets
@@ -129,9 +129,6 @@ void User::sellTickets() {
     cout << "What is your preferred price for each ticket: " << endl;
     cin >> ticketPrice;
 
-    // applied changes in credit for the seller should increase, question is
-    // where does this increase go to, user accounts file? need to check **
-
     // pass in variables [transactionCode, eventName, uName, numTickets, ticketPrice]
     // into daily transaction data (dtd) constructor
   }
@@ -161,9 +158,12 @@ void User::buyTickets() {
     cout << "Seller's name: " << endl;
     cin >> sellerName;
 
-    // need to display to terminal price per tickete, and total price of tickets
+    float totalP = ticketPrice * numTickets;
+    // need to display to terminal price per ticket, and total price of tickets
+    cout << "Price per ticket: $" << ticketPrice << endl;
+    cout << "Total Price: $" << totalP << endl;
 
-    // invoke method here to apply changes to user inventory
+    // invoke method here to apply changes to user inventory, not needed for phase 2
 
     // pass in variables [transactionCode, eventName, sellerName, numTickets, ticketPrice]
     // into daily transaction data (dtd) constructor
@@ -208,11 +208,13 @@ void User::addCreditStandardMode() {
     string transactionCode = "06";
 
     cout << "Welcome to the Credit Assistance Terminal!" << endl;
-    cout << "Enter the amount of credit you request: " << endl;
+    cout << "Enter the amount of credit you wish to request: " << endl;
     cin >> credit;
 
     cout << "User: " << this->username << " is requesting an increase of funds "
     << " in the amount of " << credit << endl;
+
+    // must udpate changes accordingly, not necessary for phase 2
 
     // pass in variables [transactionCode, this.username, this.userAccountType, credit]
     // into daily transaction data (dtd) constructor
@@ -236,7 +238,7 @@ void User::refund() {
     cout << "Enter the seller's username: " << endl;
     cin >> sellerUName;
 
-    cout << "Amount refunded to " << sellerUName << ": " << endl;
+    cout << "Amount to be refund to " << sellerUName << ": " << endl;
     cin >> credit;
 
     cout << "Amount to be credited to " << sellerUName << " is $" << credit
@@ -244,7 +246,7 @@ void User::refund() {
     cout << "Amount to be deducted from " << buyerUName << " is $" << credit
     << endl;
 
-    // invoke method to update buyer's/seller's available credit
+    // invoke method to update buyer's/seller's available cred.[not for phase 2]
 
     // pass in variables [transactionCode, buyerUName, sellerUName, credit]
     // into daily transaction data (dtd) constructor
