@@ -19,7 +19,7 @@ User::User(string username, string userAccountType, float availableCredit) {
 
 // helper methods for User class methods
 // a function that checks in whether a user exists within a certain file (A.T or A.U)
-bool checkUserExists(string uName) {
+bool checkOutstandingTickets(string uName) {
     // need to implement this function
     return false;
 }
@@ -86,10 +86,10 @@ void User::deleteUser() {
    transactionCode = "02";
 
    // a check to see if this user has outstanding tickets
-   if (checkUserExists(name) == true)
+   if (checkOutstandingTickets(name) == true)
    {
      // invoke method that removes specified user's information, in this case
-     // tickets file for the outstanding tickets
+     // tickets file for the outstanding tickets -- not needed for phase 2
 
      // assuming the outstanding tickets are now cancelled
 
@@ -97,7 +97,7 @@ void User::deleteUser() {
      // daily transaction data (dtd) constructor
    }
    else {
-     // no need to check, directly invoke method as mentioned below
+     // means no outstanding tickets
 
      // pass in variables [transactionCode, name , findUserType(name), defaultCredit] into
      // daily transaction data (dtd) constructor
@@ -123,10 +123,10 @@ void User::sellTickets() {
     cout << "What is the name of the Event: " << endl;
     cin >> eventName;
 
-    cout << "Number of tickets you wish to purchase: " << endl;
+    cout << "Number of tickets you wish to sell: " << endl;
     cin >> numTickets;
 
-    cout << "What is your preferred price for these tickets: " << endl;
+    cout << "What is your preferred price for each ticket: " << endl;
     cin >> ticketPrice;
 
     // applied changes in credit for the seller should increase, question is
