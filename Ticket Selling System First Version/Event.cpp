@@ -4,7 +4,7 @@
 using namespace std;
 
 // constructor methods
-Event::Event(string name, string host, unsigned int numTickets {
+Event::Event(string name, string host, unsigned int numTickets) {
   this->eventName = name;
   this->hostName = host;
   this->ticketsAvailable = numTicket;

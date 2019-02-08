@@ -1,7 +1,8 @@
 // contains information for the users (admin, fs, bs, ss)
 #include <iostream>
-#include "User.h"
 #include <string>
+#include "User.h"
+#include "DailyTransactionData.h"
 
 using namespace std;
 
@@ -41,12 +42,13 @@ string findUserCredit(string uName) {
 
 // reminder** to revise why this function is necessary when its passing data
 // to the user accounts file
+// function is important when creating new user (priviledged; admin)
 void User::stringRepresentation(string username, string userType, float userCredit) {
   string uName = username;
   string uType = userType;
   float uCredit = userCredit;
   // pass in variables [uName , uType, uCredit] into
-  // user accounts file (dtd) constructor
+  // user accounts file
 }
 
 float User::getAvailableCredit() {
@@ -57,7 +59,7 @@ void User::updateAvailableCredit(float amount) {
   this->availableCredit = amount;
 }
 
-void User::createUser() {
+string User::createUser() {
   if (this->userAccountType == "AA") {
     float defaultCredit = 50000.00;
     string name, accountType, transactionCode, strCredit;
@@ -71,6 +73,9 @@ void User::createUser() {
 
     // pass in variables [transactionCode, name and defaultCredit] into
     // daily transaction data (dtd) constructor
+    DailyTransactionData createUser = DailyTransactionData(DailyTransactionData::CategoryOne{},
+      transactionCode, name, accountType, defaultCredit);
+    return createUser.stringRepresentation();
   }
   else {
     cerr << "Sorry not an admin, you don't have the " <<
@@ -78,12 +83,16 @@ void User::createUser() {
   }
 }
 
-void User::deleteUser() {
+string User::deleteUser() {
  if (this->userAccountType == "AA") {
    string name, transactionCode;
    cout << "Enter the username you wish to remove: " << endl;
    cin >>  name;
    transactionCode = "02";
+
+   // let account type be "BS" for now, we are accessing user accounts yet
+   string accountType = "BS";
+   float noCredits = 0.00;
 
    // a check to see if this user has outstanding tickets
    if (checkOutstandingTickets(name) == true)
@@ -102,6 +111,9 @@ void User::deleteUser() {
      // pass in variables [transactionCode, name , findUserType(name), defaultCredit] into
      // daily transaction data (dtd) constructor
    }
+   DailyTransactionData deleteUser = DailyTransactionData(DailyTransactionData::CategoryOne{},
+     transactionCode, name, accountType, noCredits);
+   return deleteUser.stringRepresentation();
  }
  else {
    cerr << "Sorry not an admin, you don't have the " <<
@@ -109,7 +121,7 @@ void User::deleteUser() {
  }
 }
 
-void User::sellTickets() {
+string User::sellTickets() {
   //ignore this, this is just a side note for Jude for later:
   //dt.transactioncode = 02; dt.username = username...etc;
   if (this->userAccountType != "BS") {
@@ -121,7 +133,7 @@ void User::sellTickets() {
 
     cout << "Welcome to the Seller's Terminal!" << endl;
     cout << "What is the name of the Event: " << endl;
-    cin >> eventName;
+      getline(cin, eventName);
 
     cout << "Number of tickets you wish to sell: " << endl;
     cin >> numTickets;
@@ -131,6 +143,10 @@ void User::sellTickets() {
 
     // pass in variables [transactionCode, eventName, uName, numTickets, ticketPrice]
     // into daily transaction data (dtd) constructor
+    DailyTransactionData sellTickets = DailyTransactionData(transactionCode, eventName,
+      uName, numTickets, ticketPrice);
+    return sellTickets.stringRepresentation();
+
   }
   else {
     cerr << "Sorry Buy standard (BS) users don't have the "
@@ -139,24 +155,25 @@ void User::sellTickets() {
   //return dt.stringRepresentation;
 }
 
-void User::buyTickets() {
+string User::buyTickets() {
   if (this->userAccountType != "SS") {
     string eventName, transactionCode, sellerName;
     unsigned int numTickets;
     // need to invoke method to retreive price of seller's ticket
-    // defaulted to 5 dollars for simplicity
-    float ticketPrice = 5.00;
+    // defaulted to 5.99 dollars for simplicity
+    float ticketPrice = 5.99;
     transactionCode = "03";
 
     cout << "Welcome to the Buyer's Terminal!" << endl;
     cout << "What is the name of the Event: " << endl;
-    cin >> eventName;
+    getline(cin, eventName);
 
     cout << "Number of tickets you wish to purchase: " << endl;
     cin >> numTickets;
+    cin.ignore();
 
     cout << "Seller's name: " << endl;
-    cin >> sellerName;
+    getline(cin, sellerName);
 
     float totalP = ticketPrice * numTickets;
     // need to display to terminal price per ticket, and total price of tickets
@@ -167,6 +184,10 @@ void User::buyTickets() {
 
     // pass in variables [transactionCode, eventName, sellerName, numTickets, ticketPrice]
     // into daily transaction data (dtd) constructor
+    DailyTransactionData buyTickets = DailyTransactionData(transactionCode, eventName,
+      sellerName, numTickets, ticketPrice);
+    return buyTickets.stringRepresentation();
+
   }
   else {
     cerr << "Sorry Sell standard (SS) users don't have the "
@@ -174,24 +195,31 @@ void User::buyTickets() {
   }
 }
 
-void User::addCreditAdminMode() {
+string User::addCreditAdminMode() {
   if (this->userAccountType == "AA") {
     float credit;
     string uName, transactionCode;
     cout << "Welcome to the Admin Credit Transfer Terminal!" << endl;
     cout << "Amount of credit to add: " << endl;
     cin >> credit;
+    cin.ignore();
 
     cout << "Whom shall receive this amount: "  << endl;
-    cin >> uName;
+    getline(cin, uName);
 
-    cout << "User: " << uName << " will receive an increase in  funds of " <<
+    cout << "User: " << uName << " will receive an increase in funds of " <<
     credit << endl;
 
     transactionCode = "06";
 
+    //for now assume user type is "SS"
+    string tempUserType = "SS";
+
     // pass in variables [transactionCode, uName, this.userAccountType, credit]
     // into daily transaction data (dtd) constructor
+    DailyTransactionData addCreditAdminMode = DailyTransactionData(DailyTransactionData::CategoryOne{},
+      transactionCode, uName, tempUserType, credit);
+    return addCreditAdminMode.stringRepresentation();
 
     // NOTE** for the above acount type, need to check whether its for the Admin
     // doing the addcredit action, or for the user receiving the credit
@@ -202,7 +230,7 @@ void User::addCreditAdminMode() {
     }
 }
 
-void User::addCreditStandardMode() {
+string User::addCreditStandardMode() {
   if (this->userAccountType != "AA") {
     float credit;
     string transactionCode = "06";
@@ -218,6 +246,10 @@ void User::addCreditStandardMode() {
 
     // pass in variables [transactionCode, this.username, this.userAccountType, credit]
     // into daily transaction data (dtd) constructor
+    DailyTransactionData addCreditStandardMode = DailyTransactionData(DailyTransactionData::CategoryOne{},
+      transactionCode, this->username, this->userAccountType, credit);
+    return addCreditStandardMode.stringRepresentation();
+
     }
     else {
       cerr << "Sorry only Admins can assign additional funds to other users."
@@ -225,7 +257,7 @@ void User::addCreditStandardMode() {
     }
 }
 
-void User::refund() {
+string User::refund() {
   if (this->userAccountType == "AA") {
     float credit;
     string buyerUName, sellerUName, transactionCode;
@@ -233,10 +265,12 @@ void User::refund() {
 
     cout << "Welcome to the Refund Terminal!" << endl;
     cout << "Enter the buyer's username: " << endl;
-    cin >> buyerUName;
+    cin.clear(); cin.sync();
+    getline(cin, buyerUName);
 
     cout << "Enter the seller's username: " << endl;
-    cin >> sellerUName;
+    cin.clear(); cin.sync();
+    getline(cin, sellerUName);
 
     cout << "Amount to be refund to " << sellerUName << ": " << endl;
     cin >> credit;
@@ -250,8 +284,27 @@ void User::refund() {
 
     // pass in variables [transactionCode, buyerUName, sellerUName, credit]
     // into daily transaction data (dtd) constructor
+    DailyTransactionData refund = DailyTransactionData(DailyTransactionData::CategoryTwo{},
+      transactionCode, buyerUName, sellerUName, credit);
+    return refund.stringRepresentation();
     }
     else {
       cerr << "Sorry only Admins can make refunds to user accounts." << endl;
     }
 }
+
+// for testing purposes! To compile and run this use,
+//"g++ User.cpp DailyTransactionData.cpp -o output" command on cmd
+/*
+int main() {
+  User u("Jude", "AA", 567.45);
+  //cout << u.createUser() << endl;
+  //cout << u.deleteUser() << endl;
+  //cout << u.sellTickets() << endl;
+  //cout << u.buyTickets() << endl;
+  //cout << u.addCreditAdminMode() << endl;
+  //cout << u.addCreditStandardMode() << endl;
+  //cout << u.refund() << endl;
+  return 0;
+}
+*/

@@ -18,11 +18,11 @@ class User {
     void stringRepresentation(string username, string userType, float userCredit);
     float getAvailableCredit();
     void updateAvailableCredit(float credit);
-    void createUser();
-    void deleteUser();
-    void sellTickets();
-    void buyTickets();
-    void refund();
-    void addCreditStandardMode();
-    void addCreditAdminMode();
+    string createUser();
+    string deleteUser();
+    string sellTickets();
+    string buyTickets();
+    string refund();
+    string addCreditStandardMode();
+    string addCreditAdminMode();
 };
