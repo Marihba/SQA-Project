@@ -38,18 +38,20 @@ DailyTransactionData::DailyTransactionData(string tcode, string ename, string sn
 string DailyTransactionData::stringRepresentation() {
 
   string formatedStr;
-
   if (this->transactionCode == "01" || this->transactionCode == "02" ||
-    this->transactionCode == "06" || this->transactionCode == "00")
+    this->transactionCode == "06" || this->transactionCode == "00") {
     formatedStr = toStrCodeTypeOne();
+  }
 
-  else if (this->transactionCode == "05") formatedStr = toStrCodeTypeTwo();
+  else if (this->transactionCode == "05") {
+    formatedStr = toStrCodeTypeTwo();
+  }
 
-  else if (this->transactionCode == "03" || this->transactionCode == "04")
-    formatedStr = toStrCodeTypeThree();
+  else if (this->transactionCode == "03" || this->transactionCode == "04") {
+      formatedStr = toStrCodeTypeThree();
+  }
 
   return formatedStr;
-
 }
 
 string DailyTransactionData::toStrCodeTypeOne() {
