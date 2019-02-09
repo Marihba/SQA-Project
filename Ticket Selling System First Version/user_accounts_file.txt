@@ -1,5 +1,6 @@
 Jude            AA 100000.00
-Ajanth          AA 050000.00
-Judit           AA 034000.00
-BanupriyaRob    AA 010300.00
+Ajanth          BS 050000.00
+Judit           SS 034000.00
+BanupriyaRob    FS 010300.00
 Abhiram         FS 055000.00
+Rocky           AA 999999.99
