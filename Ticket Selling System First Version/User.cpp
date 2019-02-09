@@ -1,4 +1,9 @@
-// contains information for the users (admin, fs, bs, ss)
+// focus of this class is to define all types of users (Admin = AA,
+// Full Standard = SS, Buy Standard = BS & Sell Standard = SS) and have methods
+// that ensures every user type meets the necessary requirements to fulfill their
+// actions. Every action is supplied with a DailyTransactionData (dtd) constructor
+
+// necessary libraries
 #include <iostream>
 #include <string>
 #include "User.h"
@@ -11,22 +16,22 @@ using namespace std;
 
 //doing an example for this in sell tickets
 
-// constructors
+// constructor
 User::User(string username, string userAccountType, float availableCredit) {
   this->username = username;
   this->userAccountType = userAccountType;
   this->availableCredit = availableCredit;
 }
 
-// helper methods for User class methods
-// a function that checks in whether a user exists within a certain file (A.T or A.U)
+// Non-constructor methods for User class
+
+// checks whether a user has outstanding tickets in the available tickets file
 bool checkOutstandingTickets(string uName) {
-    // need to implement this function
+    // postponed  for phase 3
     return false;
 }
 
-// takes a username and finds the user type, since we know that the
-// user type is two digits and the posistion is fixed
+// takes a username and finds the user type
 string findUserType(string uName) {
   // needs implementing, temporarily returns SS
   return "SS";
@@ -47,18 +52,21 @@ void User::stringRepresentation(string username, string userType, float userCred
   string uName = username;
   string uType = userType;
   float uCredit = userCredit;
-  // pass in variables [uName , uType, uCredit] into
+    // pass in variables [uName , uType, uCredit] into
   // user accounts file
 }
 
+// returns the current logged in users available credit
 float User::getAvailableCredit() {
   return this->availableCredit;
 }
 
+// sets the current active user's available credit with a new amount
 void User::updateAvailableCredit(float amount) {
   this->availableCredit = amount;
 }
 
+// confirms whether active user is an admin and produces a new user account
 string User::createUser() {
   if (this->userAccountType == "AA") {
     float defaultCredit = 50000.00;
@@ -83,6 +91,8 @@ string User::createUser() {
   }
 }
 
+// confirms whether currently active user is an admin and removes an existing
+// user account
 string User::deleteUser() {
  if (this->userAccountType == "AA") {
    string name, transactionCode;
@@ -121,6 +131,8 @@ string User::deleteUser() {
  }
 }
 
+// ensure's that the currently active user is not a buy standard and proceeds
+// with setting up tickets for sale
 string User::sellTickets() {
   //ignore this, this is just a side note for Jude for later:
   //dt.transactioncode = 02; dt.username = username...etc;
@@ -155,6 +167,8 @@ string User::sellTickets() {
   //return dt.stringRepresentation;
 }
 
+// ensure's that the currently active user is not a sell standard and proceeds
+// with procedures for purchase of tickets
 string User::buyTickets() {
   if (this->userAccountType != "SS") {
     string eventName, transactionCode, sellerName;
@@ -195,6 +209,8 @@ string User::buyTickets() {
   }
 }
 
+// ensure's that the currently active user is an admin and proceeds
+// with steps to add credit to an existing user account
 string User::addCreditAdminMode() {
   if (this->userAccountType == "AA") {
     float credit;
@@ -218,7 +234,7 @@ string User::addCreditAdminMode() {
     // pass in variables [transactionCode, uName, this.userAccountType, credit]
     // into daily transaction data (dtd) constructor
     DailyTransactionData addCreditAdminMode = DailyTransactionData(DailyTransactionData::CategoryOne{},
-      transactionCode, uName, tempUserType, credit);
+      transactionCode, uName, tempUserType, credit);  // ask jude why we have this instead of admin user type?
     return addCreditAdminMode.stringRepresentation();
 
     // NOTE** for the above acount type, need to check whether its for the Admin
@@ -230,6 +246,8 @@ string User::addCreditAdminMode() {
     }
 }
 
+// ensure's that the currently active user is not an admin and proceeds
+// with necessary steps to request extra credit
 string User::addCreditStandardMode() {
   if (this->userAccountType != "AA") {
     float credit;
@@ -246,10 +264,11 @@ string User::addCreditStandardMode() {
 
     // pass in variables [transactionCode, this.username, this.userAccountType, credit]
     // into daily transaction data (dtd) constructor
-    DailyTransactionData addCreditStandardMode = DailyTransactionData(DailyTransactionData::CategoryOne{},
+    DailyTransactionData addCreditStandardMode =
+      DailyTransactionData(DailyTransactionData::CategoryOne{},
       transactionCode, this->username, this->userAccountType, credit);
-    return addCreditStandardMode.stringRepresentation();
 
+    return addCreditStandardMode.stringRepresentation();
     }
     else {
       cerr << "Sorry only Admins can assign additional funds to other users."
@@ -257,6 +276,9 @@ string User::addCreditStandardMode() {
     }
 }
 
+// ensure's that the currently active user is an admin and proceeds
+// with necessary steps in order to refund credit from seller's account to
+// buyer's account
 string User::refund() {
   if (this->userAccountType == "AA") {
     float credit;
@@ -295,10 +317,10 @@ string User::refund() {
 
 // for testing purposes! To compile and run this use,
 //"g++ User.cpp DailyTransactionData.cpp -o output" command on cmd
-/*
+
 int main() {
   User u("Jude", "AA", 567.45);
-  //cout << u.createUser() << endl;
+  cout << u.createUser() << endl;
   //cout << u.deleteUser() << endl;
   //cout << u.sellTickets() << endl;
   //cout << u.buyTickets() << endl;
@@ -307,4 +329,3 @@ int main() {
   //cout << u.refund() << endl;
   return 0;
 }
-*/

@@ -9,8 +9,6 @@ class User {
     float availableCredit;
 
   public:
-    // default constructor
-    User();
     // constructor
     User(string username, string userAccountType, float availableCredit);
 
