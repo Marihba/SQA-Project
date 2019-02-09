@@ -1,4 +1,6 @@
-// header file for users
+// header file for the User.cpp
+// declares all necessary information for User class
+
 using namespace std;
 
 class User {
@@ -12,8 +14,9 @@ class User {
     // constructor
     User(string username, string userAccountType, float availableCredit);
 
-    // other built in methods
-    void stringRepresentation(string username, string userType, float userCredit);
+    // non constructor methods (see User class for method documentation)
+    void stringRepresentation(string username, string userType,
+      float userCredit);
     float getAvailableCredit();
     void updateAvailableCredit(float credit);
     string createUser();
