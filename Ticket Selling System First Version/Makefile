@@ -6,7 +6,7 @@
 
  LoginInterface.o: LoginInterface.cpp LoginInterface.h
 	g++ -c LoginInterface.cpp
-	
+
  User.o: User.cpp User.h
 	g++ -c User.cpp
 
