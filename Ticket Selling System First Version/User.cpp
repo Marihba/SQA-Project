@@ -16,6 +16,9 @@ using namespace std;
 
 //doing an example for this in sell tickets
 
+//default constructor
+User::User() {}
+
 // constructor
 User::User(string username, string userAccountType, float availableCredit) {
   this->username = username;
@@ -84,9 +87,10 @@ string User::createUser() {
     return createUser.stringRepresentation();
   }
   else {
-    cerr << "Sorry not an admin, you don't have the " <<
+    cout << "Sorry not an admin, you don't have the " <<
     "privilege to create a new user" << endl;
   }
+  return "NULL";
 }
 
 // confirms whether currently active user is an admin and removes an existing
@@ -95,7 +99,8 @@ string User::deleteUser() {
  if (this->userAccountType == "AA") {
    string name, transactionCode;
    cout << "Enter the username you wish to remove: ";
-   cin >>  name;
+   resetInput();
+   getline(cin, name);
    transactionCode = "02";
 
    // let account type be "BS" for now, we are not accessing user accounts yet
@@ -127,6 +132,7 @@ string User::deleteUser() {
    cerr << "Sorry not an admin, you don't have the " <<
    "privilege to delete a current user" << endl;
  }
+ return "NULL";
 }
 
 // ensure's that the currently active user is not a buy standard and proceeds
@@ -141,6 +147,7 @@ string User::sellTickets() {
 
     cout << "Welcome to the Seller's Terminal!" << endl;
     cout << "What is the name of the Event: ";
+    resetInput();
     getline(cin, eventName);
 
     cout << "Number of tickets you wish to sell: ";
@@ -159,6 +166,7 @@ string User::sellTickets() {
     cerr << "Sorry Buy standard (BS) users don't have the "
     << "privilege to sell tikets to users." << endl;
   }
+  return "NULL";
 }
 
 // ensure's that the currently active user is not a sell standard and proceeds
@@ -174,13 +182,14 @@ string User::buyTickets() {
 
     cout << "Welcome to the Buyer's Terminal!" << endl;
     cout << "What is the name of the Event: ";
+    resetInput();
     getline(cin, eventName);
 
     cout << "Number of tickets you wish to purchase: ";
     cin >> numTickets;
-    cin.ignore();
 
     cout << "Seller's name: ";
+    resetInput();
     getline(cin, sellerName);
 
     float totalP = ticketPrice * numTickets;
@@ -200,6 +209,7 @@ string User::buyTickets() {
     cerr << "Sorry Sell standard (SS) users don't have the "
     << "privilege to buy tikets from users." << endl;
   }
+  return "NULL";
 }
 
 // ensure's that the currently active user is an admin and proceeds
@@ -211,9 +221,9 @@ string User::addCreditAdminMode() {
     cout << "Welcome to the Admin Credit Transfer Terminal!" << endl;
     cout << "Amount of credit to add: ";
     cin >> credit;
-    cin.ignore();
 
     cout << "Whom shall receive this amount: ";
+    resetInput();
     getline(cin, uName);
 
     cout << "User: " << uName << " will receive an increase in funds of " <<
@@ -233,6 +243,7 @@ string User::addCreditAdminMode() {
       cerr << "Sorry only Admins can assign additional funds to other users."
       << endl;
     }
+        return "NULL";
 }
 
 // ensure's that the currently active user is not an admin and proceeds
@@ -261,6 +272,7 @@ string User::addCreditStandardMode() {
       cerr << "Sorry only Admins can assign additional funds to other users."
       << endl;
     }
+    return "NULL";
 }
 
 // ensure's that the currently active user is an admin and proceeds
@@ -274,11 +286,11 @@ string User::refund() {
 
     cout << "Welcome to the Refund Terminal!" << endl;
     cout << "Enter the buyer's username: ";
-    cin.clear(); cin.sync();
+    resetInput();
     getline(cin, buyerUName);
 
     cout << "Enter the seller's username: ";
-    cin.clear(); cin.sync();
+    resetInput();
     getline(cin, sellerUName);
 
     cout << "Amount to be refund to " << sellerUName << ": ";
@@ -299,17 +311,33 @@ string User::refund() {
     else {
       cerr << "Sorry only Admins can make refunds to user accounts." << endl;
     }
+    return "NULL";
+}
+
+string User::terminateSession() {
+  cout << "Logging out..." << endl;
+  DailyTransactionData terminateSession =
+    DailyTransactionData(DailyTransactionData::CategoryOne{},
+    "00", this->username, this->userAccountType, this->availableCredit);
+  return terminateSession.stringRepresentation();
+
+}
+void User::resetInput() {
+  cin.clear();
+  cin.sync();
 }
 
 
+/*
 int main() {
-  User u("Jude", "AA", 567.45);
+  User u("Jude", "FS", 567.45);
   cout << u.createUser() << endl;
   //cout << u.deleteUser() << endl;
-  cout << u.sellTickets() << endl;
+  //cout << u.sellTickets() << endl;
   //cout << u.buyTickets() << endl;
   //cout << u.addCreditAdminMode() << endl;
   //cout << u.addCreditStandardMode() << endl;
   //cout << u.refund() << endl;
   return 0;
 }
+*/

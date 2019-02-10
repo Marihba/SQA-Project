@@ -30,36 +30,42 @@ void LoginInterface::scanForExistingUser(string userDataString) {
   string usernameSubString = userDataString.substr(0, 15);
   if (isExistingUser(usernameSubString)) {
     this->userExist = true;
-    this->currentUserData = userDataString;
+    this->currentUserData[0] = this->username;
+    //starting from position 16, get the next 2 characters (user type)
+    this->currentUserData[1] = userDataString.substr(16, 2);
+    this->currentUserData[2] = userDataString.substr(19, 9);
   }
 }
 
 //for next phase extend this to include options, 1. login   2. exit
 void LoginInterface::displayLogin() {
 
-  cout << "\n\n\t\t~ Welcome to Ticket Selling Service ~\n\n" << "\tA Portal Just for " <<
+  cout << "\n\n\t\t\t~ Welcome to Ticket Selling Service ~\n\n" << "\tA Portal Just for " <<
   "Getting The Most FIRE Deals on Hit Popular Event Tickets!\n" << endl;
   cout << "\tPlease enter your username,\n\n" << "\t\t*USERNAME: ";
+  cin.clear(); cin.sync();  //clean input
   getline(cin, this->username);
   accessUserFile();
   while (this->userExist != true) {
     cout << "\n\n\tUser Does Not Exist! Please try again!\n\n\t\t*USERNAME: ";
+    cin.clear(); cin.sync();
     getline(cin, this->username);
     accessUserFile();
   }
 }
 
-
 bool LoginInterface::isExistingUser(string usernameSubString) {
-  // remove white spaces and compare to username
-  usernameSubString.erase(std::remove(usernameSubString.begin(),
-    usernameSubString.end(),' '),usernameSubString.end());
+
+  for (auto itr = usernameSubString.rbegin();
+    itr != usernameSubString.rend() && *itr == ' ';
+    itr=usernameSubString.rbegin()) {
+    usernameSubString.pop_back();
+  }
   return this->username == usernameSubString;
 }
 
-
 //retrieves the entire line which contains current user data
-string LoginInterface::retrieveUserData() {
+string* LoginInterface::retrieveUserData() {
   return this->currentUserData;
 }
 

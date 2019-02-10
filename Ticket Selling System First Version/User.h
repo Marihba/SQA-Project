@@ -11,6 +11,8 @@ class User {
     float availableCredit;
 
   public:
+    // default constructor
+    User();
     // constructor
     User(string username, string userAccountType, float availableCredit);
 
@@ -26,4 +28,6 @@ class User {
     string refund();
     string addCreditStandardMode();
     string addCreditAdminMode();
+    string terminateSession();
+    void resetInput();
 };

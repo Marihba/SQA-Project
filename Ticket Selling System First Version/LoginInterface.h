@@ -11,7 +11,7 @@ class LoginInterface {
     string username;
     string userAccountsFilePath;
     bool userExist;
-    string currentUserData;
+    string currentUserData[3];
     bool isExistingUser(string usernameSubString);
     void scanForExistingUser(string userDataString);
     void accessUserFile();  // opens user accounts file (calls exisitng user check method)
@@ -19,7 +19,7 @@ class LoginInterface {
   public:
     LoginInterface();
     void displayLogin();
-    string retrieveUserData();
+    string* retrieveUserData();
     void terminateSession();
 };
 
