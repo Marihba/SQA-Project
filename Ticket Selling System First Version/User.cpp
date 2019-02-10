@@ -98,7 +98,7 @@ string User::deleteUser() {
    cin >>  name;
    transactionCode = "02";
 
-   // let account type be "BS" for now, we are accessing user accounts yet
+   // let account type be "BS" for now, we are not accessing user accounts yet
    string accountType = "BS";
    float noCredits = 0.00;
 
@@ -141,7 +141,7 @@ string User::sellTickets() {
 
     cout << "Welcome to the Seller's Terminal!" << endl;
     cout << "What is the name of the Event: ";
-      getline(cin, eventName);
+    getline(cin, eventName);
 
     cout << "Number of tickets you wish to sell: ";
     cin >> numTickets;
@@ -305,11 +305,11 @@ string User::refund() {
 int main() {
   User u("Jude", "AA", 567.45);
   cout << u.createUser() << endl;
-  cout << u.deleteUser() << endl;
+  //cout << u.deleteUser() << endl;
   cout << u.sellTickets() << endl;
-  cout << u.buyTickets() << endl;
-  cout << u.addCreditAdminMode() << endl;
-  cout << u.addCreditStandardMode() << endl;
-  cout << u.refund() << endl;
+  //cout << u.buyTickets() << endl;
+  //cout << u.addCreditAdminMode() << endl;
+  //cout << u.addCreditStandardMode() << endl;
+  //cout << u.refund() << endl;
   return 0;
 }
