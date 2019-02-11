@@ -1,6 +1,10 @@
-// header file for the User.cpp
-// declares all necessary information for User class
+/*
+Header file for the User class. Declares all the necessary
+information for the main methods of the User class
 
+@author Abhiram Sinnarajah & Jude AntonyRajan
+@version 1.03
+@since  2019-02-05                                                            */
 using namespace std;
 
 class User {

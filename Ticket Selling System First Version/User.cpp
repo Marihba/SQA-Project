@@ -1,9 +1,12 @@
-// focus of this class is to define all types of users (Admin = AA,
-// Full Standard = SS, Buy Standard = BS & Sell Standard = SS) and have methods
-// that ensures every user type meets the necessary requirements to fulfill their
-// actions. Every action is supplied with a DailyTransactionData (dtd) constructor
+/*
+Focus of this class is to define all types of users (AA, SS, BS & SS) and have
+methods that ensures every user type meets the necessary requirements to
+fulfill their actions.
 
-// necessary libraries
+@author Abhiram Sinnarajah & Jude AntonyRajan
+@version 1.09
+@since  2019-02-05                                                            */
+
 #include <iostream>
 #include <string>
 #include "User.h"
@@ -11,64 +14,90 @@
 
 using namespace std;
 
-//Initialize Daily Transaction Class
-//DailyTransaction dt = new DailyTransaction();
+//~~~~~~~~~~~~~~~~~Constructor methods for User class~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-//doing an example for this in sell tickets
-
-//default constructor
-User::User() {}
-
-// constructor
+/*
+A constructor that creates a user object. Needed to implement other important
+user functions.
+@param username First param that takes in a string username
+@param userAccountType Second param that takes in a string specifying user type
+@param getAvailableCredit Third param is a float for this users available credit
+@return User An object of the class User                                      */
 User::User(string username, string userAccountType, float availableCredit) {
   this->username = username;
   this->userAccountType = userAccountType;
   this->availableCredit = availableCredit;
 }
-// Support methods for some User class methods
 
-// checks whether a user has outstanding tickets in the available tickets file
+/*
+Checks whether  user has outstanding tickets in the available tickets file.
+@param uName    First param takes a string specifying the username
+@return bool    A boolean that confirms whether this user does infact have
+                oustanding tickets                                            */
 bool checkOutstandingTickets(string uName) {
     // postponed  for phase 3
     return false;
 }
 
-// takes a username and finds the user type
+/*
+Takes the active user's username and finds the user type
+@param uName    First param takes a string specifying the username
+@return string  A string indicating what the user's actual account type is    */
 string findUserType(string uName) {
   // needs implementing, temporarily returns SS
   return "SS";
 }
 
-// a method that takes a username and finds the user's available credit
+/*
+Takes the active user's username and finds the available credit
+@param uName    First param takes a string specifying the username
+@return string  A string indicating the user's actual available credit        */
 string findUserCredit(string uName) {
   // needs implementing, temporarily returns 10000.00
   return "10000.00";
 }
 
-// Non-constructor methods for User class
+//~~~~~~~~~~~~~~~~~Non-constructor methods for User class~~~~~~~~~~~~~~~~~~~~~~~
 
-// function is important when creating new user (priviledged; admin)
-void User::stringRepresentation(string username, string userType, float userCredit) {
-  string uName = username;
-  string uType = userType;
-  float uCredit = userCredit;
-  // postponed for phase 3
-  // pass in variables [uName , uType, uCredit] into
-  // user accounts file
+
+/*
+Admin privileged method that creates a string that will be updated on the
+Current User accounts file.
+@param username   A string username of the new account to be added
+@param userType   A string user type of the new account to be added
+@param userCredit A float user credit of the new account to be added
+@return void                                                                  */
+void User::stringRepresentation(string username, string userType,
+ float userCredit) {
+  if (this->userAccountType == "AA") {
+    string uName = username;
+    string uType = userType;
+    float uCredit = userCredit;
+    // postponed for phase 3
+    // pass in variables [uName , uType, uCredit] into user accounts file
+  }
 }
 
-// returns the current logged in users available credit
+/*
+A method that returns the currently active user's available credit
+@return float   A float indicating the active user's available credit         */
 float User::getAvailableCredit() {
   return this->availableCredit;
   // necessary for phase 3
 }
 
-// sets the current active user's available credit with a new amount
+/*
+Sets the current active user's available credit with a new amount
+@param amount   A float representing new available credit for the  user
+@param void                                                                   */
 void User::updateAvailableCredit(float amount) {
   this->availableCredit = amount;
 }
 
-// confirms whether active user is an admin and produces a new user account
+/*
+Ensures whether active user is an admin and creates a new user account.
+@return string  A transaction code string that will be linked to the Daily
+                Transaction File (DTF)                                        */
 string User::createUser() {
   if (this->userAccountType == "AA") {
     float defaultCredit = 50000.00;
@@ -93,8 +122,9 @@ string User::createUser() {
   return "NULL";
 }
 
-// confirms whether currently active user is an admin and removes an existing
-// user account
+/*
+Ensures whether active user is an admin and removes an existing user account
+@return string  A transaction code string that is to be updated on the DTF    */
 string User::deleteUser() {
  if (this->userAccountType == "AA") {
    string name, transactionCode;
@@ -135,8 +165,10 @@ string User::deleteUser() {
  return "NULL";
 }
 
-// ensure's that the currently active user is not a buy standard and proceeds
-// with setting up tickets for sale
+/*
+Ensures that the currently active user is not a buy standard type and proceeds
+with setting up tickets for sale
+@return string  A transaction code string that is to be updated on the DTF    */
 string User::sellTickets() {
   if (this->userAccountType != "BS") {
     string eventName, transactionCode, uName;
@@ -151,9 +183,11 @@ string User::sellTickets() {
     getline(cin, eventName);
 
     cout << "Number of tickets you wish to sell: ";
+    resetInput();
     cin >> numTickets;
 
     cout << "What is your preferred price for each ticket: ";
+    resetInput();
     cin >> ticketPrice;
 
     DailyTransactionData sellTickets =
@@ -169,8 +203,10 @@ string User::sellTickets() {
   return "NULL";
 }
 
-// ensure's that the currently active user is not a sell standard and proceeds
-// with procedures for purchase of tickets
+/*
+Ensures that the currently active user is not a sell standard type and proceeds
+ with procedures for purchase of tickets
+@return string  A transaction code string that is to be updated on the DTF    */
 string User::buyTickets() {
   if (this->userAccountType != "SS") {
     string eventName, transactionCode, sellerName;
@@ -214,6 +250,11 @@ string User::buyTickets() {
 
 // ensure's that the currently active user is an admin and proceeds
 // with steps to add credit to an existing user account
+
+/*
+Ensures that the currently active user is an admin and proceeds with steps to
+add credit to an existing user account
+@return string  A transaction code string that is to be updated on the DTF    */
 string User::addCreditAdminMode() {
   if (this->userAccountType == "AA") {
     float credit;
@@ -246,8 +287,10 @@ string User::addCreditAdminMode() {
         return "NULL";
 }
 
-// ensure's that the currently active user is not an admin and proceeds
-// with necessary steps to request extra credit
+/*
+Ensures that the currently active user is not an admin and proceeds with
+with necessary steps to request extra credit
+@return string  A transaction code string that is to be updated on the DTF    */
 string User::addCreditStandardMode() {
   if (this->userAccountType != "AA") {
     float credit;
@@ -275,9 +318,10 @@ string User::addCreditStandardMode() {
     return "NULL";
 }
 
-// ensure's that the currently active user is an admin and proceeds
-// with necessary steps in order to refund credit from seller's account to
-// buyer's account
+/*
+Ensures that the currently active user is an admin and proceeds with necessary
+steps in order to refund credit from seller's account to buyer's account
+@return string  A transaction code string that is to be updated on the DTF    */
 string User::refund() {
   if (this->userAccountType == "AA") {
     float credit;
@@ -314,30 +358,21 @@ string User::refund() {
     return "NULL";
 }
 
+/*
+To terminate the session of the currently active user.
+@return string  A transaction code string that is to be updated on the DTF    */
 string User::terminateSession() {
   cout << "Logging out..." << endl;
   DailyTransactionData terminateSession =
     DailyTransactionData(DailyTransactionData::CategoryOne{},
     "00", this->username, this->userAccountType, this->availableCredit);
   return terminateSession.stringRepresentation();
-
 }
+
+/*
+Helper method to neatly structure some of the terminal display information for
+certain user actions.                                                         */
 void User::resetInput() {
   cin.clear();
   cin.sync();
 }
-
-
-/*
-int main() {
-  User u("Jude", "FS", 567.45);
-  cout << u.createUser() << endl;
-  //cout << u.deleteUser() << endl;
-  //cout << u.sellTickets() << endl;
-  //cout << u.buyTickets() << endl;
-  //cout << u.addCreditAdminMode() << endl;
-  //cout << u.addCreditStandardMode() << endl;
-  //cout << u.refund() << endl;
-  return 0;
-}
-*/
