@@ -1,11 +1,11 @@
 /*
-Focus of this class is to define all Daily Transactions and have
-methods that ensures every transaction type produces a string representation
-and sent to User Class
+Focus of this class is to define all the Daily Transaction Data (DTD) methods
+that ensures every transaction type produces a string representation and is sent
+to the User Class.
 
 @author Abhiram Sinnarajah & Jude AntonyRajan
-@version 1.09
-@since  2019-02-05                                                            */
+@version 1.05
+@since  2019-02-06                                                            */
 
 #include <iostream>
 #include <string>
@@ -15,61 +15,53 @@ and sent to User Class
 
 using namespace std;
 
-//~~~~~~~~~~~~~~~~~Constructor methods for Daily Transaction Data class~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~Constructor methods for DTD class~~~~~~~~~~~~~~~~~~~~~~~
+
+//DailyTransactionData::DailyTransactionData() {}
 
 /*
-Cosider 'DTD' as an acronym for 'Daily Transaction Data'
-A constructor that creates a DTD object. Needed to implement other important
-DTD functions.
-
-Constructors,
-
-DEFAULT DailyTransactionData:
-  @param none
-
-CategoryOne DailyTransactionData:
-*For transaction types 00, 01, 02, 06*
-  @param tcode - string specifying the code for transaction
-  @param uname - string specifying username of the current user
-  @param utype - string specifying user type/ granted status
-  @param creds - float specifying the amount of available credits
-
-CategoryTwo DailyTransactionData:
-*For Transaction type 05 ONLY*
-  @param tcode    - string specifying the code for transaction
-  @param bname    - string specifying username of the buyer
-  @param sname    - string specifying username of the seller
-  @param refcreds - float specifying the amount of credits to be refunded
-
-CategoryThree DailyTransactionData:
-*For transaction types 03, 04*
-  @param tcode  - string specifying the code for transaction
-  @param ename  - string specifying name of the event
-  @param sname  - string specifying username of the seller
-  @param tnum   - int specifying the number of tickets for sale
-  @param tprice - float specifying the price per ticket                                                */
-
-
-DailyTransactionData::DailyTransactionData() {}
-
-DailyTransactionData::DailyTransactionData(CategoryOne, string tcode, string uname,
-  string utype, float creds) {
+A constructor that takes a unique set of params for a certain action to occur.
+This is for transaction types 00, 01, 02, 06.
+@param categoryID       a constant term to identify the constructor type
+@param tcode            string specifying the code for transaction
+@param uname            string specifying username of the current user
+@param utype            string specifying user type/granted status
+@param creds            float specifying the amount of available credits      */
+DailyTransactionData::DailyTransactionData(CategoryOne, string tcode,
+  string uname, string utype, float creds) {
     this->transactionCode = tcode;
     this->username = uname;
     this->userType = utype;
     this->availableCredits = creds;
 }
 
-DailyTransactionData::DailyTransactionData(CategoryTwo, string tcode, string bname,
-  string sname, float refcreds) {
+/*
+A constructor that takes a unique set of params for a certain action to occur.
+In this case for transaction type 05 ONLY*
+@param categoryID   a constant term to identify the constructor type
+@param tcode        string specifying the code for transaction
+@param bname        string specifying username of the buyer
+@param sname        string specifying username of the seller
+@param refcreds     float specifying the amount of credits to be refunded     */
+DailyTransactionData::DailyTransactionData(CategoryTwo, string tcode,
+  string bname, string sname, float refcreds) {
     this->transactionCode = tcode;
     this->username = bname;
     this->sellerUsername = sname;
     this->refundCredits = refcreds;
 }
 
-DailyTransactionData::DailyTransactionData(string tcode, string ename, string sname,
-  int tnum, float tprice) {
+/*
+A constructor that takes a unique set of params for a certain action to occur.
+This is for transaction types 03 & 04.
+@param categoryID   a constant term to identify the constructor type
+@param tcode        string specifying the code for transaction
+@param ename        string specifying name of the event
+@param sname        string specifying username of the seller
+@param tnum         int specifying the number of tickets for sale
+@param tprice       float specifying the price per ticket                     */
+DailyTransactionData::DailyTransactionData(string tcode, string ename,
+  string sname, int tnum, float tprice) {
     this->transactionCode = tcode;
     this->eventName = ename;
     this->sellerUsername = sname;
@@ -77,22 +69,22 @@ DailyTransactionData::DailyTransactionData(string tcode, string ename, string sn
     this->ticketPrice = tprice;
 }
 
-/*
-Returns a string representation of the transaction to be stored in DT output file.
-  @return string - string format of the transaction
-*/
-string DailyTransactionData::stringRepresentation() {
+//~~~~~~~~~~~~~~~~~Non-constructor methods for User class~~~~~~~~~~~~~~~~~~~~~~~
 
+/*
+Returns a string representation of the transaction to be stored in the Daily
+transaction file [output]
+@return string  The string format of the transaction                          */
+string DailyTransactionData::stringRepresentation() {
   string formatedStr;
+
   if (this->transactionCode == "01" || this->transactionCode == "02" ||
     this->transactionCode == "06" ||  this->transactionCode == "00") {
     formatedStr = toStrCodeTypeOne();
   }
-
   else if (this->transactionCode == "05") {
     formatedStr = toStrCodeTypeTwo();
   }
-
   else if (this->transactionCode == "03" || this->transactionCode == "04") {
       formatedStr = toStrCodeTypeThree();
   }
@@ -101,9 +93,8 @@ string DailyTransactionData::stringRepresentation() {
 }
 
 /*
-Returns a string representation for the transactions 00, 01, 02, 06.
-  @return string - string format of the transaction
-*/
+Returns a string representation for the following transactions 00, 01, 02, 06.
+@return string  The string format of the transaction.                         */
 string DailyTransactionData::toStrCodeTypeOne() {
 
   string format;
@@ -119,13 +110,11 @@ string DailyTransactionData::toStrCodeTypeOne() {
   format += availableCredsStr;
   //cout << format.size() << endl;
   return format;
-
 }
 
 /*
 Returns a string representation for the transaction 05 (Refund).
-  @return string - string format of the transaction
-*/
+@return string  The string format of the transaction.                         */
 string DailyTransactionData::toStrCodeTypeTwo() {
 
   string format;
@@ -144,9 +133,8 @@ string DailyTransactionData::toStrCodeTypeTwo() {
 }
 
 /*
-Returns a string representation for the transactions 03, 04 (Buy & Sell)
-  @return string - string format of the transaction
-*/
+Returns a string representation for the transactions 03 &  04 (Buy & Sell).
+@return string  The string format of the transaction.                         */
 string DailyTransactionData::toStrCodeTypeThree() {
 
   string format;
@@ -167,34 +155,16 @@ string DailyTransactionData::toStrCodeTypeThree() {
   format += priceStr;
   //cout << format.size() << endl;
   return format;
-
 }
 
 /*
-Takes in a float value and returns a string representation of
-a floating value with next two trailing decimals
-  @param floatValue -  float the value to be stripped
-  @param precision  - int which sets the precision
-  @return string    - string representation of the floating value
-*/
+Takes in a float value and returns a string representation of a floating value
+followed by two trailing decimals.
+@param floatValue   A float value that is to be stripped
+@param precision    An int value for the precision of the above float
+@return string      A string representation of the above floating value.      */
 string DailyTransactionData::floatToPrecision(float floatValue, int precision) {
-
   stringstream stream;
   stream << fixed << setprecision(precision) << floatValue;
   return stream.str();
-
 }
-
-/*
-~ Testing/ Debugging function for DTD class ~
-int main() {
-  auto c1 = DailyTransactionData(DailyTransactionData::CategoryOne{},
-     "01", "Jude", "AA", 50000.00);
-  cout << c1.stringRepresentation() << endl;  auto c2 = DailyTransactionData(DailyTransactionData::CategoryTwo{},
-     "05", "Jude", "Abhi", 500.00);
-  cout << c2.stringRepresentation() << endl;  auto c3 = DailyTransactionData("03", "ari vevo stadium",
-    "Judit", 67, 235.99);
-  cout << c3.stringRepresentation() << endl;
-  return 0;
-}
-*/

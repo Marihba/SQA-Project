@@ -4,7 +4,7 @@ information for the main methods of the Event class.
 
 @author Abhiram Sinnarajah & Jude AntonyRajan
 @version 1.02
-@since  2019-02-06                                                            */
+@since  2019-02-07                                                           */
 
 class Event {
   private:

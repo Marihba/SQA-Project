@@ -1,13 +1,12 @@
 /*
 Focus of this class is to coordinate and control all other relevant classes and
 serve as a MAIN lobby or interface for user commands for transactions. Have
-methods which display user and transaction details and perform these transactions
-according to user inputs
+methods which display user and transaction details and perform transactions
+according to user input.
 
 @author Abhiram Sinnarajah & Jude AntonyRajan
-@version 1.09
-@since  2019-02-05
-*/
+@version 1.08
+@since  2019-02-05                                                            */
 
 #include <iostream>
 #include <iomanip>
@@ -16,15 +15,12 @@ according to user inputs
 #include <vector>
 #include "User.h"
 #include "LoginInterface.h"
-//#include <typeinfo>
 
 using namespace std;
 
 class MainInterface {
 
   private:
-    // class variables
-
     //User currentUser;
     LoginInterface loginInterface;
     vector<string> dailyTransactionsLog;
@@ -33,7 +29,7 @@ class MainInterface {
   public:
     // class methods
     void displayLoginInterface();
-    void displayUserProfile(); //displays user and this will also initialize a User class and store user information
+    void displayUserProfile();
     void displayScreen();
     char runSelection();
     void endSession();
@@ -41,11 +37,11 @@ class MainInterface {
 
 };
 
+//~~~~~~~~~~~~~~~Non-constructor methods for MainInterface class~~~~~~~~~~~~~~~~
+
 /*
 Method which begins the login process by interacting withhe LoginInterface
-and displays user profile
-  @return void
-*/
+and displays user profile.                                                    */
 void MainInterface::displayLoginInterface() {
   //Initializes Login Interface class and works with it
   loginInterface.displayLogin();
@@ -54,10 +50,8 @@ void MainInterface::displayLoginInterface() {
 
 /*
 Stores the user data received from LoginInterface and displays the user profile,
-accordingly. Also performs transactions selected by the user until end session is
-called
-  @return void
-*/
+accordingly. Also performs transactions selected by the user until end session
+is called                                                                     */
 void MainInterface::displayUserProfile() {
   //displays user profile
   string* userData = loginInterface.retrieveUserData();
@@ -144,9 +138,8 @@ void MainInterface::displayUserProfile() {
 }
 
 /*
-Method which returns a char representing a type of transaction
-  @return character - a single character representation
-*/
+Method which returns a character representing a type of transaction
+@return char   A single character representation                              */
 char MainInterface::runSelection() {
 
   char selection;
@@ -160,9 +153,7 @@ char MainInterface::runSelection() {
 }
 
 /*
-Void function which displays the screen with options for users to choose from
-  @return void
-*/
+Void function which displays the screen with options for users to choose from */
 void MainInterface::displayScreen() {
 
   cout << "\n\n\t FEATURED OPTIONS:" << "\n\n\t < To access a transaction, please"
@@ -179,9 +170,7 @@ void MainInterface::displayScreen() {
 /*
 Void function which calls writeToDailyTransaction method, this method may have
 to perform additional task for phase 3 but temporarily does not do much other
-than calling writeToDailyTransaction() method
-  @return void
-*/
+than calling writeToDailyTransaction() method                                 */
 void MainInterface::endSession() {
   //write to daily transaction log file
   //one transaction per line in file
@@ -193,9 +182,7 @@ void MainInterface::endSession() {
 
 /*
 Iterates and writes transaction data stored in dailyTransactionsLog vector
-in a Daily Transaction File
-  @return void
-*/
+in a Daily Transaction File                                                   */
 void MainInterface::writeToDailyTransaction() {
   //this writes to the *output file*
 
@@ -207,16 +194,14 @@ void MainInterface::writeToDailyTransaction() {
   myfile.close();
 }
 
-// Main which executes the program and continues its purpose until the program is
-// closed or exited
+/*
+Main which executes the program and continues its purpose until the program is
+closed or exited.                                                             */
 int main() {
 
   while (true) {
-
     MainInterface mainInterface;
     mainInterface.displayLoginInterface();
-
   }
   return 0;
-
  }

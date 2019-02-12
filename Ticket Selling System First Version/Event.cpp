@@ -17,9 +17,7 @@ A constructor that creates a user object. Needed to implement any functionality
 regarding events and their respective ticket holders.
 @param name     First param is a string for the event's name
 @param host     Second param is a string for the name of the seller
-@param hostName Third param is an unsigned int for the number of tickets
-@return Events  An object of the class User
-*/
+@param hostName Third param is an unsigned int for the number of tickets      */
 Event::Event(string name, string host, unsigned int numTickets) {
   this->eventName = name;
   this->hostName = host;

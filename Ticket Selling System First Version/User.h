@@ -15,7 +15,8 @@ class User {
 
   public:
     // constructor
-    User(std::string username, std::string userAccountType, float availableCredit);
+    User(std::string username, std::string userAccountType,
+      float availableCredit);
 
     // non constructor methods (see User class for method documentation)
     void stringRepresentation(std::string username, std::string userType,

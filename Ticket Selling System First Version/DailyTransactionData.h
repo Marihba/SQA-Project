@@ -1,9 +1,17 @@
-// header file for the DailyTransactioClass
+/*
+Header file for the DailyTransactioData class. Declares all the necessary
+information for the main methods of the DTD class.
+
+@author Abhiram Sinnarajah & Jude AntonyRajan
+@version 1.02
+@since  2019-02-05                                                            */
+
 #ifndef DailyTransactionData_H
 #define DailyTransactionData_H
 
 class DailyTransactionData {
   private:
+    // member variables
     std::string transactionCode;
     std::string username;  // use this for buyer's username as well
     std::string userType;
@@ -21,7 +29,6 @@ class DailyTransactionData {
 
   public:
     // constructors
-
     //struct to differenciate between constructors with same parameter types
     struct CategoryOne{};
     struct CategoryTwo{};

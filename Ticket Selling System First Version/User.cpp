@@ -21,14 +21,14 @@ A constructor that creates a user object. Needed to implement other important
 user functions.
 @param username First param that takes in a string username
 @param userAccountType Second param that takes in a string specifying user type
-@param getAvailableCredit Third param is a float for this users available credit
-*/
-
+@param getAvailableCredit Third param is a float for user's available credit  */
 User::User(string username, string userAccountType, float availableCredit) {
   this->username = username;
   this->userAccountType = userAccountType;
   this->availableCredit = availableCredit;
 }
+
+//~~~~~~~~~~~~~~~~~Helper methods for User class~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 /*
 Checks whether  user has outstanding tickets in the available tickets file.
@@ -58,8 +58,17 @@ string findUserCredit(string uName) {
   return "10000.00";
 }
 
-//~~~~~~~~~~~~~~~~~Non-constructor methods for User class~~~~~~~~~~~~~~~~~~~~~~~
+/*
+Method which prepares getline(cin) method for execution. Results in bug when not
+used with getline(), does not take in input values for subsequent input
+statements.
+@return void                                                                  */
+void User::resetInput() {
+  cin.clear();
+  cin.sync();
+}
 
+//~~~~~~~~~~~~~~~~~Non-constructor methods for User class~~~~~~~~~~~~~~~~~~~~~~~
 
 /*
 Admin privileged method that creates a string that will be updated on the
@@ -365,15 +374,4 @@ string User::terminateSession() {
     DailyTransactionData(DailyTransactionData::CategoryOne{},
     "00", this->username, this->userAccountType, this->availableCredit);
   return terminateSession.stringRepresentation();
-}
-
-/*
-Method which prepares getline(cin) method for execution
-Results in bug when not used with getline(), does not take
-in input values for subsequent input statements
-  @return void
-*/
-void User::resetInput() {
-  cin.clear();
-  cin.sync();
 }
