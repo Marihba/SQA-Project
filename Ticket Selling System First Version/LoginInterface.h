@@ -2,25 +2,23 @@
 #ifndef LoginInterface_H
 #define LoginInterface_H
 
-using namespace std;
-
 class LoginInterface {
 
   private:
 
-    string username;
-    string userAccountsFilePath;
+    std::string username;
+    std::string userAccountsFilePath;
     bool userExist;
-    string currentUserData[3];
-    bool isExistingUser(string usernameSubString);
-    void scanForExistingUser(string userDataString);
+    std::string currentUserData[3];
+    bool isExistingUser(std::string usernameSubString);
+    void scanForExistingUser(std::string userDataString);
     void accessUserFile();  // opens user accounts file (calls exisitng user check method)
 
   public:
     LoginInterface();
     void displayLogin();
-    string* retrieveUserData();
-    void terminateSession();
+    std::string* retrieveUserData();
+    void exitProgram();
 };
 
 #endif

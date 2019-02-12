@@ -6,16 +6,14 @@ information for the main methods of the Event class.
 @version 1.02
 @since  2019-02-06                                                            */
 
-using namespace std;
-
 class Event {
   private:
     // member variables
-    string eventName;
-    string hostName;
+    std::string eventName;
+    std::string hostName;
     unsigned int ticketsAvailable;
-    
+
   public:
     // constructor
-    Event(string name, string host, unsigned int numTicket);
+    Event(std::string name, std::string host, unsigned int numTicket);
 }

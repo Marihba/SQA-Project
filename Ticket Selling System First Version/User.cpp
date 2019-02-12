@@ -22,7 +22,8 @@ user functions.
 @param username First param that takes in a string username
 @param userAccountType Second param that takes in a string specifying user type
 @param getAvailableCredit Third param is a float for this users available credit
-@return User An object of the class User                                      */
+*/
+
 User::User(string username, string userAccountType, float availableCredit) {
   this->username = username;
   this->userAccountType = userAccountType;
@@ -367,8 +368,11 @@ string User::terminateSession() {
 }
 
 /*
-Helper method to neatly structure some of the terminal display information for
-certain user actions.                                                         */
+Method which prepares getline(cin) method for execution
+Results in bug when not used with getline(), does not take
+in input values for subsequent input statements
+  @return void
+*/
 void User::resetInput() {
   cin.clear();
   cin.sync();
