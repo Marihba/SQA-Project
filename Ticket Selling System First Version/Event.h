@@ -1,20 +1,21 @@
-// header file for the event class
+/*
+Header file for the Event class. Declares all the necessary
+information for the main methods of the Event class.
+
+@author Abhiram Sinnarajah & Jude AntonyRajan
+@version 1.02
+@since  2019-02-06                                                            */
+
 using namespace std;
 
 class Event {
-  // member variables
   private:
+    // member variables
     string eventName;
     string hostName;
     unsigned int ticketsAvailable;
+    
   public:
     // constructor
     Event(string name, string host, unsigned int numTicket);
-
-    // Event class methods
-
 }
-
-// REMINIDER** JUDE look at this after your done your function
-// what is the purpose of the event class? if we are to be simply checking
-// and updating information on files like available tickets

@@ -248,9 +248,6 @@ string User::buyTickets() {
   return "NULL";
 }
 
-// ensure's that the currently active user is an admin and proceeds
-// with steps to add credit to an existing user account
-
 /*
 Ensures that the currently active user is an admin and proceeds with steps to
 add credit to an existing user account
