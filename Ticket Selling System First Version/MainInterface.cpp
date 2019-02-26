@@ -1,4 +1,5 @@
-/*
+/* Header description of this file**
+
 Focus of this class is to coordinate and control all other relevant classes and
 serve as a MAIN lobby or interface for user commands for transactions. Have
 methods which display user and transaction details and perform transactions
@@ -6,7 +7,24 @@ according to user input.
 
 @author Abhiram Sinnarajah & Jude AntonyRajan
 @version 1.08
-@since  2019-02-05                                                            */
+@since  2019-02-05
+
+~~~~ Main program intention, I/O Files and intention of program to be ran ~~~~
+
+Main function creates a new main interface object, and transfers the process to
+login interface. Login interface would take in an input user accounts file, and
+request user to enter a username. It would then iterate through the user accounts
+file and retrieves the respective user data from the accounts file. Then, it splits
+ the string into username, user type and credit balance; sets it in an array and
+ delivers it to the main interface. Main interface would take this information;
+ store it into a new user class then displays the user details for user to view.
+ It would then display the transaction options for the user to choose from. Once
+ user picks an option, it executes the said transaction. Consequently, constructs
+ a new daily transaction data class object, and gets the string representation of
+ the transaction data to be stored in the daily transaction log which is part of
+ main interface. This transaction process will repeat until user wishes to end
+ session, in which case it would terminate session and writes the daily transaction
+ log to a daily transaction output file.                                      */
 
 #include <iostream>
 #include <iomanip>
@@ -31,7 +49,7 @@ class MainInterface {
     void displayLoginInterface();
     void displayUserProfile();
     void displayScreen();
-    char runSelection();
+    string runSelection();
     void endSession();
     void writeToDailyTransaction();
 
@@ -68,70 +86,57 @@ void MainInterface::displayUserProfile() {
     << "\n" << setw(80) << "Account Classification: " << userData[1]
     << "\n" << setw(80) << "Credit Balance: " << setprecision(2) << fixed << credits << endl;
 
-  char selection = runSelection();
+  string selection = runSelection();
 
 // exit loop if user chooses to end session
-  while(selection != '0') {
+  while(selection != "logout") {
 
-    switch(selection) {
-
-      case '1':
-        {
-          string createUser = user.createUser();
-          if (createUser != "NULL")
-            dailyTransactionsLog.push_back(createUser);
-          break;
-        }
-      case '2':
-        {
-          string deleteUser = user.deleteUser();
-          if (deleteUser != "NULL")
-            dailyTransactionsLog.push_back(deleteUser);
-        }
-        break;
-      case '3':
-        {
-          string sellTickets = user.sellTickets();
-          if (sellTickets != "NULL")
-            dailyTransactionsLog.push_back(sellTickets);
-        }
-        break;
-      case '4':
-        {
-          string buyTickets = user.buyTickets();
-          if (buyTickets != "NULL")
-            dailyTransactionsLog.push_back(buyTickets);
-        }
-        break;
-      case '5':
-        {
-          string refund = user.refund();
-          if (refund != "NULL")
-            dailyTransactionsLog.push_back(refund);
-          break;
-        }
-      case '6':
-        {
-          string addCreditStandardMode = user.addCreditStandardMode();
-          if (addCreditStandardMode != "NULL")
-            dailyTransactionsLog.push_back(addCreditStandardMode);
-          break;
-        }
-      case '7':
-        {
-          string addCreditAdminMode = user.addCreditAdminMode();
-          if (addCreditAdminMode != "NULL")
-            dailyTransactionsLog.push_back(addCreditAdminMode);
-          break;
-        }
-      default:
-        cout << "\t Invalid Selection. Please try again!" << endl;
-
+    if (selection == "create") {
+      string createUser = user.createUser();
+      if (createUser != "NULL")
+        dailyTransactionsLog.push_back(createUser);
+    }
+    else if (selection == "delete") {
+      string deleteUser = user.deleteUser();
+      if (deleteUser != "NULL")
+        dailyTransactionsLog.push_back(deleteUser);
+    }
+    else if (selection == "sell") {
+      string sellTickets = user.sellTickets();
+      if (sellTickets != "NULL")
+        dailyTransactionsLog.push_back(sellTickets);
+    }
+    else if (selection == "buy") {
+      string buyTickets = user.buyTickets();
+      if (buyTickets != "NULL")
+        dailyTransactionsLog.push_back(buyTickets);
+    }
+    else if (selection == "refund") {
+      string refund = user.refund();
+      if (refund != "NULL")
+        dailyTransactionsLog.push_back(refund);
+    }
+    else if (selection == "addcredit") {
+      if (userData[1] != "AA") {
+        string addCreditStandardMode = user.addCreditStandardMode();
+        if (addCreditStandardMode != "NULL")
+          dailyTransactionsLog.push_back(addCreditStandardMode);
+      } else {
+        string addCreditAdminMode = user.addCreditAdminMode();
+        if (addCreditAdminMode != "NULL")
+          dailyTransactionsLog.push_back(addCreditAdminMode);
       }
-      selection = runSelection();
+    }
+
+    else {
+      cout << "\t Invalid Transaction. Please enter a transaction exactly as"
+        << "what has been shown above in options!" << endl;
+    }
+
+    selection = runSelection();
 
     }
-    //terminate session and cal endSession method
+    //terminate session and call endSession method
     dailyTransactionsLog.push_back(user.terminateSession());
     endSession();
 
@@ -140,13 +145,15 @@ void MainInterface::displayUserProfile() {
 /*
 Method which returns a character representing a type of transaction
 @return char   A single character representation                              */
-char MainInterface::runSelection() {
+string MainInterface::runSelection() {
 
-  char selection;
+  string selection;
   // re-display options after each transactions
   displayScreen();
-  cout << "\n\n\t Please enter your selection: ";
-  cin >> selection;
+  cout << "\n\n\t Please enter transaction ('Logout' if you want to end session): ";
+  cin.clear(); cin.sync();
+  getline(cin, selection);
+
   cout << endl;
   return selection;
 
@@ -157,13 +164,15 @@ Void function which displays the screen with options for users to choose from */
 void MainInterface::displayScreen() {
 
   cout << "\n\n\t FEATURED OPTIONS:" << "\n\n\t < To access a transaction, please"
-    << " enter the respective number and hit ENTER >" << endl;
+    << " enter the respective transaction and hit ENTER >" << endl;
 
-  cout << "\n\n" << setw(35)   << "1 - [Create User]" << setw(35)   << "2 - [Delete User]"
-       << "\n\n\n" << setw(36) << "3 - [Sell Tickets]" << setw(34)  << "4 - [Buy Tickets]"
-       << "\n\n\n" << setw(30) << "5 - [Refund]" << setw(51)        << "6 - [Add Credits - STANDARD]"
-       << "\n\n\n" << setw(43) << "7 - [Add Credits - ADMIN]"
-       << "\n\n\n" << setw(37) << "Enter 0 to [Logout]" << endl;
+  cout << "\n\n\t Transaction List:\n"
+    << "\n\t     create"
+    << "\n\t     delete"
+    << "\n\t     sell"
+    << "\n\t     buy"
+    << "\n\t     addcredit"
+    << "\n\t     logout" << endl;
 
 }
 
