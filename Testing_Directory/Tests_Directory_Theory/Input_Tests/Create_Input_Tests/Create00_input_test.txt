@@ -1,5 +1,6 @@
+login
 Rocky
-1
+create
 BillGates
 FS
-0
+logout

@@ -1,0 +1,9 @@
+login
+Banupriya Rob
+sell
+T2020
+9
+12
+addcredit
+550
+logout

@@ -1,0 +1,5 @@
+login
+Trump
+addcredit
+777
+logout

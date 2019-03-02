@@ -21,6 +21,7 @@ class LoginInterface {
     bool userExist;
     bool isExistingUser(std::string usernameSubString);
     void scanForExistingUser(std::string userDataString);
+    void attemptLogin();
     void accessUserFile();  // opens user accounts file (calls
                             // exisitng user check method).
 

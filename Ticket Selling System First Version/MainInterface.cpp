@@ -172,6 +172,7 @@ void MainInterface::displayScreen() {
     << "\n\t     sell"
     << "\n\t     buy"
     << "\n\t     addcredit"
+    << "\n\t     refund"
     << "\n\t     logout" << endl;
 
 }
@@ -199,6 +200,8 @@ void MainInterface::writeToDailyTransaction() {
   myfile.open ("Daily_Transaction_Output_File.txt");
   for (auto const& transaction : dailyTransactionsLog) {
     myfile << transaction << endl;
+    //REMOVE THIS COMMENT!
+    cout << transaction << endl;
   }
   myfile.close();
 }

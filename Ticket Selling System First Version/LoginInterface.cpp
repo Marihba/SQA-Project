@@ -70,7 +70,25 @@ void LoginInterface::displayLogin() {
 
   cout << "\n\n\t\t\t~ Welcome to Ticket Selling Service ~\n\n" << "\tA Portal Just for " <<
   "Getting The Most FIRE Deals on Hit Popular Event Tickets!\n" << endl;
-  cout << "\tPlease enter your username,\n\n" << "\t\t*USERNAME: ";
+  string choice;
+  cout << "\t\t[ Enter 'login' to Login to access service or 'exit' to Quit program ]" << endl;
+  cout << "\n\t\t\t : ";
+  cin >> choice;
+  while (choice != "login" && choice != "exit") {
+    cout << "\n\n\t\tInvalid choice. Only 'login' or 'exit' commands permitted!" << endl;
+    cout << "\n\t\t\t : ";
+    cin >> choice;
+  }
+  if (choice == "login") {
+      attemptLogin();
+  } else {
+    exitProgram();
+  }
+}
+
+void LoginInterface::attemptLogin() {
+
+  cout << "\n\n\tPlease enter your username,\n\n" << "\t\t*USERNAME: ";
   cin.clear(); cin.sync();  //clean input
   getline(cin, this->username);
   accessUserFile();
@@ -80,6 +98,7 @@ void LoginInterface::displayLogin() {
     getline(cin, this->username);
     accessUserFile();
   }
+
 }
 
 /*
