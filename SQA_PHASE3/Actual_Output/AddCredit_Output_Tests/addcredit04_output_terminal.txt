@@ -1,0 +1,85 @@
+                        ~ Welcome to Ticket Selling Service ~
+
+        A Portal Just for Getting The Most FIRE Deals on Hit Popular Event Tickets!
+
+                [ Enter 'login' to Login to access service or 'exit' to Quit program ]
+
+                         : login
+
+
+        Please enter your username,
+
+                *USERNAME: Jude
+
+        --------------------------------------------------------------------------------
+
+         Welcome, Jude
+                                                        Account Classification: AA
+                                                                Credit Balance: 100000.00
+
+
+         FEATURED OPTIONS:
+
+         < To access a transaction, please enter the respective transaction and hit ENTER >
+
+
+         Transaction List:
+
+             create
+             delete
+             sell
+             buy
+             addcredit
+             refund
+             logout
+
+
+         Please enter transaction ('Logout' if you want to end session): addcredit
+
+Welcome to the Admin Credit Transfer Terminal!
+Amount of credit to add: 5454
+Invalid credit amount! You can only enter a credit amount of minimum 1 and maximum 1000, please retry transaction!
+
+
+         FEATURED OPTIONS:
+
+         < To access a transaction, please enter the respective transaction and hit ENTER >
+
+
+         Transaction List:
+
+             create
+             delete
+             sell
+             buy
+             addcredit
+             refund
+             logout
+
+
+         Please enter transaction ('Logout' if you want to end session): Judit
+
+         Invalid Transaction. Please enter a transaction exactly aswhat has been shown above in options!
+
+
+         FEATURED OPTIONS:
+
+         < To access a transaction, please enter the respective transaction and hit ENTER >
+
+
+         Transaction List:
+
+             create
+             delete
+             sell
+             buy
+             addcredit
+             refund
+             logout
+
+
+         Please enter transaction ('Logout' if you want to end session): logout
+
+Logging out...
+
+Session Terminated!

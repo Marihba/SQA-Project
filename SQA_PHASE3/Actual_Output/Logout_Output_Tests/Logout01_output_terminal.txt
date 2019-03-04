@@ -1,0 +1,86 @@
+                        ~ Welcome to Ticket Selling Service ~
+
+        A Portal Just for Getting The Most FIRE Deals on Hit Popular Event Tickets!
+
+                [ Enter 'login' to Login to access service or 'exit' to Quit program ]
+
+                         : login
+
+
+        Please enter your username,
+
+                *USERNAME: Jude
+
+        --------------------------------------------------------------------------------
+
+         Welcome, Jude
+                                                        Account Classification: AA
+                                                                Credit Balance: 100000.00
+
+
+         FEATURED OPTIONS:
+
+         < To access a transaction, please enter the respective transaction and hit ENTER >
+
+
+         Transaction List:
+
+             create
+             delete
+             sell
+             buy
+             addcredit
+             refund
+             logout
+
+
+         Please enter transaction ('Logout' if you want to end session): create
+
+Enter name of new user: KingKong
+What account type should this user have: FS
+KingKong(FS) user has been succesfully created!
+
+
+         FEATURED OPTIONS:
+
+         < To access a transaction, please enter the respective transaction and hit ENTER >
+
+
+         Transaction List:
+
+             create
+             delete
+             sell
+             buy
+             addcredit
+             refund
+             logout
+
+
+         Please enter transaction ('Logout' if you want to end session): delete
+
+Enter the username you wish to remove: KingKong
+User does not exist! Please retry transaction with an exisiting user!
+
+
+         FEATURED OPTIONS:
+
+         < To access a transaction, please enter the respective transaction and hit ENTER >
+
+
+         Transaction List:
+
+             create
+             delete
+             sell
+             buy
+             addcredit
+             refund
+             logout
+
+
+         Please enter transaction ('Logout' if you want to end session): logout
+
+Logging out...
+
+Session Terminated!

@@ -1,0 +1,108 @@
+                        ~ Welcome to Ticket Selling Service ~
+
+        A Portal Just for Getting The Most FIRE Deals on Hit Popular Event Tickets!
+
+                [ Enter 'login' to Login to access service or 'exit' to Quit program ]
+
+                         : login
+
+
+        Please enter your username,
+
+                *USERNAME: Ajanth
+
+        --------------------------------------------------------------------------------
+
+         Welcome, Ajanth
+                                                        Account Classification: SS
+                                                                Credit Balance: 300.05
+
+
+         FEATURED OPTIONS:
+
+         < To access a transaction, please enter the respective transaction and hit ENTER >
+
+
+         Transaction List:
+
+             create
+             delete
+             sell
+             buy
+             addcredit
+             refund
+             logout
+
+
+         Please enter transaction ('Logout' if you want to end session): addcredit
+
+Welcome to the Credit Assistance Terminal!
+Enter the amount of credit you wish to request: 555.55
+User: Ajanth is requesting an increase of funds  in the amount of 555.55
+
+
+         FEATURED OPTIONS:
+
+         < To access a transaction, please enter the respective transaction and hit ENTER >
+
+
+         Transaction List:
+
+             create
+             delete
+             sell
+             buy
+             addcredit
+             refund
+             logout
+
+
+         Please enter transaction ('Logout' if you want to end session): logout
+
+Logging out...
+
+Session Terminated!
+        _____________________________________________________________________________________________________
+
+
+                        ~ Welcome to Ticket Selling Service ~
+
+        A Portal Just for Getting The Most FIRE Deals on Hit Popular Event Tickets!
+
+                [ Enter 'login' to Login to access service or 'exit' to Quit program ]
+
+                         : login
+
+
+        Please enter your username,
+
+                *USERNAME: Trump
+
+        --------------------------------------------------------------------------------
+
+         Welcome, Trump
+                                                        Account Classification: BS
+                                                                Credit Balance: 1010.10
+
+
+         FEATURED OPTIONS:
+
+         < To access a transaction, please enter the respective transaction and hit ENTER >
+
+
+         Transaction List:
+
+             create
+             delete
+             sell
+             buy
+             addcredit
+             refund
+             logout
+
+
+         Please enter transaction ('Logout' if you want to end session): logout
+
+Logging out...
+
+Session Terminated!

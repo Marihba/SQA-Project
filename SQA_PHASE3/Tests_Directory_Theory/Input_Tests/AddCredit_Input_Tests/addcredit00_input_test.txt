@@ -1,0 +1,6 @@
+login
+Rocky
+addcredit
+678
+Trump
+logout

@@ -1,0 +1,42 @@
+                        ~ Welcome to Ticket Selling Service ~
+
+        A Portal Just for Getting The Most FIRE Deals on Hit Popular Event Tickets!
+
+                [ Enter 'login' to Login to access service or 'exit' to Quit program ]
+
+                         : buy
+
+
+                Invalid choice. Only 'login' or 'exit' commands permitted!
+
+                         : logout
+
+
+                Invalid choice. Only 'login' or 'exit' commands permitted!
+
+                         : sell
+
+
+                Invalid choice. Only 'login' or 'exit' commands permitted!
+
+                         : create
+
+
+                Invalid choice. Only 'login' or 'exit' commands permitted!
+
+                         : delete
+
+
+                Invalid choice. Only 'login' or 'exit' commands permitted!
+
+                         : addcredit
+
+
+                Invalid choice. Only 'login' or 'exit' commands permitted!
+
+                         : refund
+
+
+                Invalid choice. Only 'login' or 'exit' commands permitted!
+
+                         : exit

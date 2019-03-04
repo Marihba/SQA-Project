@@ -1,0 +1,15 @@
+                        ~ Welcome to Ticket Selling Service ~
+
+        A Portal Just for Getting The Most FIRE Deals on Hit Popular Event Tickets!
+
+                [ Enter 'login' to Login to access service or 'exit' to Quit program ]
+
+                         : login
+
+
+        Please enter your username,
+
+                *USERNAME: rebairebairebai4343434
+Invalid User Name, Username field cannot be empty or more than 15 characters long! please try again!
+
+                *USERNAME: logout

@@ -1,0 +1,71 @@
+                        ~ Welcome to Ticket Selling Service ~
+
+        A Portal Just for Getting The Most FIRE Deals on Hit Popular Event Tickets!
+
+                [ Enter 'login' to Login to access service or 'exit' to Quit program ]
+
+                         : login
+
+
+        Please enter your username,
+
+                *USERNAME: Abhiram
+
+        --------------------------------------------------------------------------------
+
+         Welcome, Abhiram
+                                                        Account Classification: FS
+                                                                Credit Balance: 55047.92
+
+
+         FEATURED OPTIONS:
+
+         < To access a transaction, please enter the respective transaction and hit ENTER >
+
+
+         Transaction List:
+
+             create
+             delete
+             sell
+             buy
+             addcredit
+             refund
+             logout
+
+
+         Please enter transaction ('Logout' if you want to end session): buy
+
+Welcome to the Buyer's Terminal!
+What is the name of the Event: The Yacht Show
+Number of tickets you wish to purchase: 2
+Seller's name: Rocky
+Price per ticket: $5.99
+Total Price: $11.98
+Are you sure you want to make this purchase?
+         YES             NO
+ : YES
+You have successfully purchased the tickets!
+
+
+         FEATURED OPTIONS:
+
+         < To access a transaction, please enter the respective transaction and hit ENTER >
+
+
+         Transaction List:
+
+             create
+             delete
+             sell
+             buy
+             addcredit
+             refund
+             logout
+
+
+         Please enter transaction ('Logout' if you want to end session): logout
+
+Logging out...
+
+Session Terminated!

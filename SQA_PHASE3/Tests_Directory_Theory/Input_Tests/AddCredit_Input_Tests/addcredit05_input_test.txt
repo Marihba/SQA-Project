@@ -1,0 +1,6 @@
+login
+Jude
+addcredit
+-50
+Judit
+logout

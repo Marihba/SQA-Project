@@ -1,0 +1,7 @@
+login
+Ajanth
+buy
+mankathada
+3
+Abhiram
+logout

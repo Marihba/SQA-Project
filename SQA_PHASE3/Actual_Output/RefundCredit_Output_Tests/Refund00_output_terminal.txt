@@ -1,0 +1,67 @@
+                        ~ Welcome to Ticket Selling Service ~
+
+        A Portal Just for Getting The Most FIRE Deals on Hit Popular Event Tickets!
+
+                [ Enter 'login' to Login to access service or 'exit' to Quit program ]
+
+                         : login
+
+
+        Please enter your username,
+
+                *USERNAME: Rocky
+
+        --------------------------------------------------------------------------------
+
+         Welcome, Rocky
+                                                        Account Classification: AA
+                                                                Credit Balance: 850.76
+
+
+         FEATURED OPTIONS:
+
+         < To access a transaction, please enter the respective transaction and hit ENTER >
+
+
+         Transaction List:
+
+             create
+             delete
+             sell
+             buy
+             addcredit
+             refund
+             logout
+
+
+         Please enter transaction ('Logout' if you want to end session): refund
+
+Welcome to the Refund Terminal!
+Enter the buyer's username: Trump
+Enter the seller's username: Abhiram
+Amount to be refund to Abhiram: 545
+Amount to be credited to Abhiram is $545.00
+Amount to be deducted from Trump is $545.00
+
+
+         FEATURED OPTIONS:
+
+         < To access a transaction, please enter the respective transaction and hit ENTER >
+
+
+         Transaction List:
+
+             create
+             delete
+             sell
+             buy
+             addcredit
+             refund
+             logout
+
+
+         Please enter transaction ('Logout' if you want to end session): logout
+
+Logging out...
+
+Session Terminated!

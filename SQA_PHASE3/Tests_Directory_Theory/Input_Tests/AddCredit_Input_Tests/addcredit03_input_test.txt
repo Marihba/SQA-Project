@@ -1,0 +1,6 @@
+login
+Jude
+addcredit
+454
+Ariana
+logout

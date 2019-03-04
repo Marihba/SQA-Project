@@ -1,0 +1,8 @@
+login
+Ajanth
+addcredit
+555.55
+logout
+login
+Trump
+logout

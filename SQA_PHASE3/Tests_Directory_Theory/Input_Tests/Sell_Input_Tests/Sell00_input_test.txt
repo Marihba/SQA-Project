@@ -1,0 +1,7 @@
+login
+Trump
+sell
+Cricket Match
+43
+39
+logout
