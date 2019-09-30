@@ -1,6 +1,5 @@
-# Ticket-Transaction-FrontEnd
+# Ticket Transaction Software FrontEnd
 
-Ticket Transaction Software
 Collaborators: 
   Jude AntonyRajan & Abhiram Sinnarajah
 
