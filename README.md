@@ -1,17 +1,9 @@
 # SQA-Project
 
-Ticket Selling System
+Ticket Transaction Software
 Collaborators: 
-  Jude AntonyRajan
-  Abhiram Sinnarajah
+  Jude AntonyRajan & Abhiram Sinnarajah
 
-Software development model: Extreme Programming Method
-
-Consists of a front end and backend. 
-
-Part 1:
-
---Front end--
-
-This is a system that first reads in a current user file and availble tickets file, then streams transactions (create, delete, addcredit, refund, buy & sell).
-The session completes with a daily transaction file upon user logout.  
+Software development Process used: [Agile] Extreme-Programming (XP)
+ 
+This is a software that initially reads in a current user file and availble tickets file, then streams transactions (create, delete, addcredit, refund, buy & sell). Session completes with a daily transaction file upon user logout (used for the backend).  
